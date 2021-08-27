@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import APPEARANCE from "@/common/util/appearance";
-import BilibiliPlayer from "@/components/player/BilibiliPlayer";
+import APPEARANCE from "@/common/util/appearance"
+import BilibiliPlayer from "@/components/player/BilibiliPlayer"
 export default {
     name: 'App',
     components: {BilibiliPlayer},

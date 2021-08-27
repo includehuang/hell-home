@@ -12,7 +12,7 @@ Vue.use(antd)
 
 Vue.config.productionTip = false
 
-import style from "./config/style";
+import style from "./config/style"
 style()
 
 /* eslint-disable no-new */
