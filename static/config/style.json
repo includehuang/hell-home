@@ -1,0 +1,15 @@
+{
+    "--notes.0001": "['image', 'list', 'video'], video暂时不支持",
+    "background.type": "image",
+    "background.image": "/static/img/ayaka.png",
+    "background.list": ["/static/img/ayaka.png","/static/img/ayaka2.png"],
+    "background.space": 60000,
+    "background.size": "auto",
+    "background.video": "",
+    "background.music": "",
+
+    "--notes.0002": "页面风格设置",
+    "window.size.font": 14,
+    "window.scroll.hide": true,
+    "window.bg.noMask": false
+}
