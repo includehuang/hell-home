@@ -3,5 +3,10 @@
     "message.test.1": "第一条测试",
     "message.test.2": "第二条测试",
     "message.test.3": "第三条测试",
-    "message.test.4": "第四条测试"
+    "message.test.4": "第四条测试",
+
+    "message.error.403": "您没有访问该页面的权限。",
+    "message.error.404": "您所访问的页面不存在。",
+    "message.error.500": "服务器错误，请稍后再试",
+    "message.error.backHome": "返回首页"
 }
