@@ -1,12 +1,6 @@
 <template>
     <div id="app">
-        <markdown :content="'# Hello World\n\n> Hell Vision'"></markdown>
         <div class="bg-mask"></div>
-        <BilibiliPlayer type="bilibili"/>
-        <BilibiliPlayer type="small"/>
-        <BilibiliPlayer type="default"/>
-        <BilibiliPlayer type="large"/>
-        <img src="./assets/logo.png">
         <router-view/>
         <waifu/>
     </div>
@@ -18,10 +12,6 @@ import BilibiliPlayer from "@/components/player/BilibiliPlayer"
 export default {
     name: 'App',
     components: {BilibiliPlayer},
-    data() {
-        return {
-        }
-    },
     mounted() {
         Vue.prototype.$vueObj = this
     },

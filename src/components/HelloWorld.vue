@@ -1,12 +1,7 @@
 <template>
     <div class="hello">
+        <img src="../assets/logo.png">
         <h1>{{ msg }}</h1>
-        <h2>{{ $t('message.test') }}</h2>
-        <h2>{{ $t('message.test.1') }}</h2>
-        <h2>{{ $t('message.test.2') }}</h2>
-        <h2>{{ $t('message.test.3') }}</h2>
-        <h2>{{ $t('message.test.4') }}</h2>
-        <p><span>{{$t('message.test.2')}}</span></p>
         <ul>
             <li>
                 <a
