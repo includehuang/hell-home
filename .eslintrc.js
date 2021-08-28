@@ -24,7 +24,7 @@ module.exports = {
           禁用 console
           ❌ console.log(xxx)
         */
-        'no-console': process.env.NODE_ENV === 'production' ? 1 : 1,
+        'no-console': process.env.NODE_ENV === 'production' ? 1 : 'off',
         /*
           使用let 或 const而不是var
           ❌ var a = 1
