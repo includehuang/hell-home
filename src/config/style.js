@@ -1,4 +1,4 @@
-import STYLE from '../../static/config/style.json'
+import STYLE from '@res/config/style.json'
 import Vue from "vue"
 
 const thisVue = new Vue()
@@ -20,9 +20,8 @@ export default function() {
                 document.documentElement.style.backgroundImage = `url("${STYLE['background.list'][index]}")`
             }
         }
-        let index = getImgIndex()
         document.documentElement.style.backgroundImage = `url("${STYLE['background.list'][0]}")`
-        setInterval(index, STYLE['background.space'])
+        setInterval(getImgIndex(), STYLE['background.space'])
     }
 
     /* ========================================需要页面加载后执行的方法================================================= */
