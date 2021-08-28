@@ -1,4 +1,8 @@
 import STYLE from '../../static/config/style.json'
+import Vue from "vue"
+
+const thisVue = new Vue()
+const vueObj = thisVue.$vueObj
 
 export default function() {
     // 根据屏幕宽度设置背景图尺寸
@@ -30,6 +34,7 @@ export default function() {
         // 是否需要蒙版
         if (STYLE['window.bg.noMask']) {
             document.getElementsByClassName('bg-mask')[0].style.display = 'none'
+            vueObj.$store.commit('setNoMask', true)
         }
     }, 0)
 

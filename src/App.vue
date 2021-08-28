@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import Vue from "vue"
 import BilibiliPlayer from "@/components/player/BilibiliPlayer"
 export default {
     name: 'App',
@@ -21,6 +22,7 @@ export default {
         }
     },
     mounted() {
+        Vue.prototype.$vueObj = this
     },
 }
 </script>

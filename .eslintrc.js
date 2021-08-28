@@ -139,18 +139,6 @@ module.exports = {
             }
         ],
         /*
-          强制在关键字前后使用一致的空格
-          ❌ if(true) {}
-          ✅ if (true) {}
-        */
-        'keyword-spacing': [
-            1,
-            {
-                before: false,
-                after: true
-            }
-        ],
-        /*
           要求构造函数首字母大写
           ❌ function person() {}
           ✅ function Person() {}
