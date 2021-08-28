@@ -1,11 +1,14 @@
 <template>
-    <div id="app">
-        <div class="bg-mask"></div>
-        <router-view/>
-        <waifu/>
-    </div>
+    <a-config-provider :locale="locale">
+        <div id="app">
+            <div class="bg-mask"></div>
+            <router-view/>
+            <waifu ref="live2d" :settings="LIVE2D_SETTINGS" :style="{display: live2dDisplay}"/>
+        </div>
+    </a-config-provider>
 </template>
 
+<!--suppress JSUnusedGlobalSymbols -->
 <script>
 import Vue from "vue"
 import BilibiliPlayer from "@/components/player/BilibiliPlayer"
@@ -14,7 +17,19 @@ export default {
     components: {BilibiliPlayer},
     mounted() {
         Vue.prototype.$vueObj = this
+        Vue.prototype.$hideLive2d = () => {this.live2dDisplay = 'none'}
+        Vue.prototype.$showLive2d = () => {this.live2dDisplay = 'display'}
     },
+    data() {
+        return {
+            LIVE2D_SETTINGS: {
+                'waifuDraggable': 'axis-x',
+                'modelStorage': true,
+            },
+            live2dDisplay: 'block',
+            locale: 'zh-CN'
+        }
+    }
 }
 </script>
 
