@@ -10,6 +10,7 @@ import store from "@/store/store"
 import VueI18n from "vue-i18n"
 import i18n from "@/lang/i18n"
 import markdown from "@/tool/markdown/markdown"
+import request from "@/common/request"
 
 Vue.use(waifu)
 Vue.use(antd)
@@ -17,6 +18,10 @@ Vue.use(VueI18n)
 Vue.use(markdown)
 
 Vue.config.productionTip = false
+// noinspection JSUnusedGlobalSymbols
+Vue.prototype.$axios = request
+// noinspection JSUnusedGlobalSymbols
+Vue.prototype.$request = request
 
 import style from "./config/style"
 style()
