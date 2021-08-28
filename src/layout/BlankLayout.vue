@@ -9,7 +9,6 @@
 export default {
     name: 'BlankLayout',
     mounted() {
-        console.log('BlankLayout=========', this.$router)
     }
 }
 </script>
