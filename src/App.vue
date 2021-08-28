@@ -1,5 +1,5 @@
 <template>
-    <a-config-provider :locale="locale">
+    <a-config-provider>
         <div id="app">
             <div class="bg-mask"></div>
             <router-view/>
@@ -27,7 +27,6 @@ export default {
                 'modelStorage': true,
             },
             live2dDisplay: 'block',
-            locale: 'zh-CN'
         }
     }
 }
