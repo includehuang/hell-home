@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <markdown :content="'# Hello World\n\n> Hell Vision'"></markdown>
         <div class="bg-mask"></div>
         <BilibiliPlayer type="bilibili"/>
         <BilibiliPlayer type="small"/>

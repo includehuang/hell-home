@@ -10,11 +10,13 @@ import Vuex from "vuex"
 import store from "@/store/store"
 import VueI18n from "vue-i18n"
 import i18n from "@/lang/i18n"
+import markdown from "@/tool/markdown/markdown"
 
 Vue.use(waifu)
 Vue.use(antd)
 Vue.use(Vuex)
 Vue.use(VueI18n)
+Vue.use(markdown)
 
 Vue.config.productionTip = false
 
