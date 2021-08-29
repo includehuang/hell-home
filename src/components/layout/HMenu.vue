@@ -190,7 +190,6 @@ export default {
     },
     methods: {
         i18nRender(key) {
-            console.log(key)
             return this.$t(`${key}`)
         },
     }
