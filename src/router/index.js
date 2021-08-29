@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import BlankLayout from "@/layout/BlankLayout"
+import BasicLayout from "@/layout/BasicLayout"
 
 Vue.use(Router)
 
@@ -13,12 +13,12 @@ let router = new Router({
     routes: [
         {
             path: '/',
-            redirect: '/temp',
-            component: BlankLayout,
-            meta: {title: 'home'},
+            redirect: '/home',
+            component: BasicLayout,
+            meta: {title: '/'},
             children: [
                 {
-                    path: '/temp',
+                    path: '/homeTemp',
                     redirect: '/home',
                     component: RouteView,
                     meta: {title: 'menu.dashboard'},
@@ -31,34 +31,34 @@ let router = new Router({
                         },
                     ]
                 },
-            ]
-        },
-        // 异常页面
-        {
-            path: '/exception',
-            name: 'exception',
-            component: RouteView,
-            redirect: '/exception/403',
-            meta: {title: 'menu.exception', icon: 'warning', permission: ['exception']},
-            children: [
+                // 异常页面
                 {
-                    path: '/exception/403',
-                    name: 'Exception403',
-                    component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/403'),
-                    meta: {title: 'menu.exception.not-permission', permission: ['exception']}
+                    path: '/exception',
+                    name: 'exception',
+                    component: RouteView,
+                    redirect: '/exception/403',
+                    meta: {title: 'menu.exception', icon: 'warning', permission: ['exception']},
+                    children: [
+                        {
+                            path: '/exception/403',
+                            name: 'Exception403',
+                            component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/403'),
+                            meta: {title: 'menu.exception.not-permission', permission: ['exception']}
+                        },
+                        {
+                            path: '/exception/404',
+                            name: 'Exception404',
+                            component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/404'),
+                            meta: {title: 'menu.exception.not-find', permission: ['exception']}
+                        },
+                        {
+                            path: '/exception/500',
+                            name: 'Exception500',
+                            component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/500'),
+                            meta: {title: 'menu.exception.server-error', permission: ['exception']}
+                        }
+                    ]
                 },
-                {
-                    path: '/exception/404',
-                    name: 'Exception404',
-                    component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/404'),
-                    meta: {title: 'menu.exception.not-find', permission: ['exception']}
-                },
-                {
-                    path: '/exception/500',
-                    name: 'Exception500',
-                    component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/500'),
-                    meta: {title: 'menu.exception.server-error', permission: ['exception']}
-                }
             ]
         },
         // 404重定向
