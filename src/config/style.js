@@ -34,6 +34,17 @@ export default function() {
         if (STYLE['window.bg.noMask']) {
             document.getElementsByClassName('bg-mask')[0].style.display = 'none'
             vueObj.$store.commit('setNoMask', true)
+        }else {
+            // 设置蒙版透明度
+            document.getElementsByClassName('bg-mask')[0].style.opacity = STYLE['window.bg.mask.opacity']
+        }
+        // 是否需要特效层
+        if (STYLE['window.bg.noSpecial']) {
+            document.getElementsByClassName('special-effects')[0].style.display = 'none'
+            vueObj.$store.commit('setNoSpecial', true)
+        }else {
+            // 设置特效层透明度
+            document.getElementsByClassName('special-effects')[0].style.opacity = STYLE['window.bg.special.opacity']
         }
     }, 0)
 

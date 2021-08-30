@@ -2,6 +2,7 @@
     <a-config-provider>
         <div id="app">
             <div class="bg-mask"></div>
+            <iframe class="special-effects" frameborder="no" src="/static/html/sakura.html"></iframe>
             <router-view/>
             <waifu ref="live2d" :settings="LIVE2D_SETTINGS" :style="{display: live2dDisplay}"/>
         </div>
@@ -48,21 +49,27 @@ body {
     background-color: rgba(255, 255, 255, 0) !important;
 }
 
-.bg-mask {
-    position: fixed;
-    top: -500px;
-    width: 100%;
-    height: 150vh;
-    min-height: 1500px;
-    z-index: -9999;
-    background-color: rgba(255, 255, 255, 0.75) !important;
-}
-
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     min-height: 100%;
+
+    .bg-mask {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        z-index: -9999;
+        background-color: rgb(255, 255, 255) !important;
+    }
+
+    .special-effects {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        z-index: -8888;
+    }
+
 }
 </style>
