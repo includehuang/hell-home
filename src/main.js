@@ -11,6 +11,7 @@ import VueI18n from "vue-i18n"
 import i18n from "@/lang/i18n"
 import markdown from "@/tool/markdown/markdown"
 import request from "@/common/request"
+import * as echarts from 'echarts'
 
 Vue.use(waifu)
 Vue.use(antd)
@@ -22,6 +23,8 @@ Vue.config.productionTip = false
 Vue.prototype.$axios = request
 // noinspection JSUnusedGlobalSymbols
 Vue.prototype.$request = request
+// noinspection JSUnusedGlobalSymbols
+Vue.prototype.$echarts = echarts
 
 import style from "./config/style"
 style()
