@@ -12,7 +12,7 @@
             </div>
             <div class="content-extra">
                 <div class="content-title">
-                    <span class="welcome-text"></span>
+                    <span class="welcome-text">{{ nowTime }}</span>
                 </div>
                 <div>{{ $t(`message.${openTime}`) }}</div>
             </div>
@@ -28,12 +28,17 @@ export default {
     name: "Home",
     data() {
         return {
+            moment,
+            nowTime: moment().format('HH: mm: ss'),
             openTime: moment().format('HH'),
             avatar: '/static/img/common/avatar.jpg',
             author: 'Hell Vision',
         }
     },
     mounted() {
+        setInterval(() => {
+            this.nowTime = moment().format('HH: mm: ss')
+        }, 1000)
     }
 }
 </script>
