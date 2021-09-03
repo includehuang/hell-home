@@ -2,15 +2,15 @@
     <a-layout id="basic-layout" class="layout">
         <div class="bg-mask"></div>
         <iframe class="special-effects" frameborder="no" src="/static/html/sakura.html"></iframe>
-        <a-layout-header :class="'header-render'" theme="#2F54EB">
+        <a-layout-header class='header-render' theme="#2F54EB">
             <div class="logo"/>
             <h-menu/>
             <div class="header-extra"></div>
         </a-layout-header>
-        <a-layout-content :class="'content-render'">
+        <a-layout-content class='content-render'>
             <router-view/>
         </a-layout-content>
-        <a-layout-footer :class="'footer-render'">
+        <a-layout-footer class='footer-render'>
         </a-layout-footer>
         <waifu ref="live2d" :settings="LIVE2D_SETTINGS" :style="{display: live2dDisplay}"/>
     </a-layout>
@@ -29,6 +29,11 @@ export default {
     },
     data() {
         return {
+            LIVE2D_SETTINGS: {
+                'waifuDraggable': 'axis-x',
+                'modelStorage': true,
+            },
+            live2dDisplay: 'block',
             // preview.pro.antd.com only use.
             isProPreviewSite: process.env.VUE_APP_PREVIEW === 'true' && process.env.NODE_ENV !== 'development',
             // end
@@ -82,6 +87,8 @@ export default {
 </script>
 
 <style lang="less">
+@import "../assets/style/color";
+
 #basic-layout {
 
     text-align: center;
@@ -105,8 +112,11 @@ export default {
     .header-render {
 
         text-align: center;
-        background: #FFFFFF;
+        background: @backGround;
         min-width: 1200px;
+        box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+        transition: background 0.3s, width 0.2s;
+        z-index: 100;
 
         * {
             vertical-align: top;
@@ -123,7 +133,7 @@ export default {
         .menu-render {
             display: inline-block;
             width: 900px;
-            line-height: 62px;
+            line-height: 63px;
             text-align: center;
 
             .anticon {
@@ -172,7 +182,7 @@ export default {
             color: hsla(0, 0%, 100%, .85);
 
             &:hover {
-                background: #1890ff;
+                background: @theme;
             }
         }
     }
@@ -180,7 +190,7 @@ export default {
     .ant-pro-account-avatar {
         .antd-pro-global-header-index-avatar {
             margin: 20px 8px 20px 0;
-            color: #1890ff;
+            color: @theme;
             vertical-align: top;
             background: rgba(255, 255, 255, 0.85);
         }

@@ -18,15 +18,6 @@ export default {
         Vue.prototype.$hideLive2d = () => {this.live2dDisplay = 'none'}
         Vue.prototype.$showLive2d = () => {this.live2dDisplay = 'display'}
     },
-    data() {
-        return {
-            LIVE2D_SETTINGS: {
-                'waifuDraggable': 'axis-x',
-                'modelStorage': true,
-            },
-            live2dDisplay: 'block',
-        }
-    }
 }
 </script>
 
