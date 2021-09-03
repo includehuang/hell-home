@@ -12,7 +12,7 @@
     "window.size.font": 14,
     "window.scroll.hide": true,
     "window.bg.noMask": false,
-    "window.bg.mask.opacity": 0.5,
+    "window.bg.mask.opacity": 0.35,
     "window.bg.noSpecial": false,
-    "window.bg.special.opacity": 0.5
+    "window.bg.special.opacity": 0.65
 }
