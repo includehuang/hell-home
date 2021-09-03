@@ -26,7 +26,7 @@ let router = new Router({
                         {
                             path: '/home',
                             name: 'HomePage',
-                            component: () => import('@/components/HelloWorld'),
+                            component: () => import('@/page/home/Home'),
                             meta: {title: 'home.title'}
                         },
                     ]
