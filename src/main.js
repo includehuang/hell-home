@@ -12,6 +12,7 @@ import i18n from "@/lang/i18n"
 import markdown from "@/tool/markdown/markdown"
 import request from "@/common/request"
 import * as echarts from 'echarts'
+import moment from "moment"
 
 Vue.use(waifu)
 Vue.use(antd)
@@ -25,6 +26,8 @@ Vue.prototype.$axios = request
 Vue.prototype.$request = request
 // noinspection JSUnusedGlobalSymbols
 Vue.prototype.$echarts = echarts
+// noinspection JSUnusedGlobalSymbols
+Vue.prototype.$moment = moment
 
 import style from "./config/style"
 style()

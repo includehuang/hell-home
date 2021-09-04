@@ -22,22 +22,19 @@
 
 <script>
 
-import moment from "moment"
-
 export default {
     name: "Home",
     data() {
         return {
-            moment,
-            nowTime: moment().format('HH: mm: ss'),
-            openTime: moment().format('HH'),
+            nowTime: this.$moment().format('HH: mm: ss'),
+            openTime: this.$moment().format('HH'),
             avatar: '/static/img/common/avatar.jpg',
             author: 'Hell Vision',
         }
     },
     mounted() {
         setInterval(() => {
-            this.nowTime = moment().format('HH: mm: ss')
+            this.nowTime = this.$moment().format('HH: mm: ss')
         }, 1000)
     }
 }
