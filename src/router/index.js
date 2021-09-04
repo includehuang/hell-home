@@ -61,6 +61,32 @@ let router = new Router({
                 },
             ]
         },
+        {
+            path: '/subfield',
+            redirect: '/subfield/index',
+            component: BasicLayout,
+            meta: {title: '/subfield'},
+            children: [
+                {
+                    path: '/subfieldTemp',
+                    redirect: '/subfield/index',
+                    component: RouteView,
+                    children: [
+                        {
+                            path: '/subfield/index',
+                            name: 'SubfieldIndex',
+                            component: () => import('@/subfield/Index'),
+                            meta: {title: 'subfield.index'}
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            path: '/timer',
+            name: 'timer',
+            component: () => import('@/subfield/timer/Timer')
+        },
         // 404重定向
         {
             path: '*',
