@@ -122,7 +122,7 @@ export default {
 
     .content-render {
         margin: 0 auto;
-        width: 1248px;
+        width: 1272px;
         text-align: left;
     }
 
