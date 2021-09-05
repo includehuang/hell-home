@@ -1,5 +1,5 @@
 <template>
-    <a-config-provider>
+    <a-config-provider :locale="zh_CN">
         <div id="app">
             <router-view/>
         </div>
@@ -9,14 +9,24 @@
 <!--suppress JSUnusedGlobalSymbols -->
 <script>
 import Vue from "vue"
+import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
 import BilibiliPlayer from "@/components/player/BilibiliPlayer"
+import 'moment/locale/zh-cn'
+
 export default {
     name: 'App',
     components: {BilibiliPlayer},
+    data() {
+        return {
+            zh_CN,
+        }
+    },
     mounted() {
         Vue.prototype.$vueObj = this
         Vue.prototype.$hideLive2d = () => {this.live2dDisplay = 'none'}
         Vue.prototype.$showLive2d = () => {this.live2dDisplay = 'display'}
+
+        this.$moment.locale('zh-cn')
     },
 }
 </script>
