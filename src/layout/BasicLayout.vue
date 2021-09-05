@@ -34,37 +34,7 @@ export default {
                 'modelStorage': true,
             },
             live2dDisplay: 'block',
-            // preview.pro.antd.com only use.
-            isProPreviewSite: process.env.VUE_APP_PREVIEW === 'true' && process.env.NODE_ENV !== 'development',
-            // end
-            isDev: process.env.NODE_ENV === 'development' || process.env.VUE_APP_PREVIEW === 'true',
-
-            // base
-            menus: [],
-            // 侧栏收起状态
-            collapsed: false,
             title: '祎果',
-            settings: {
-                // 布局类型
-                layout: 'topmenu', // 'sidemenu', 'topmenu'
-                // CONTENT_WIDTH_TYPE
-                contentWidth: 'Fixed',
-                // 主题 'dark' | 'light'
-                theme: 'light',
-                // 主色调
-                primaryColor: '#2F54EB',
-                fixedHeader: true,
-                fixSiderbar: false,
-                colorWeak: false,
-
-                hideHintAlert: false,
-                hideCopyButton: false
-            },
-            // 媒体查询
-            query: {},
-
-            // 是否手机模式
-            isMobile: false
         }
     },
     mounted() {
@@ -92,7 +62,7 @@ export default {
 #basic-layout {
 
     text-align: center;
-    min-width: 1300px;
+    min-width: 1600px;
 
     .bg-mask {
         position: fixed;
@@ -152,7 +122,7 @@ export default {
 
     .content-render {
         margin: 0 auto;
-        width: 1080px;
+        width: 1248px;
         text-align: left;
     }
 

@@ -49,7 +49,7 @@ export default {
     .header {
 
         background: @backGround;
-        padding: 20px 40px;
+        padding: 12px 24px;
 
         .avatar {
             display: inline-block;
