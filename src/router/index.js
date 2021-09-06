@@ -9,58 +9,60 @@ const RouteView = {
     render: h => h('router-view')
 }
 
-let router = new Router({
-    routes: [
+const BasicRouter = {
+    path: '/',
+    redirect: '/home',
+    component: BasicLayout,
+    meta: {title: '/', icon: 'home'},
+    children: [
         {
-            path: '/',
-            redirect: '/home',
-            component: BasicLayout,
-            meta: {title: '/'},
+            path: '/home',
+            redirect: '/home/index',
+            component: RouteView,
+            meta: {title: 'menu.dashboard', icon: 'home'},
             children: [
                 {
-                    path: '/homeTemp',
-                    redirect: '/home',
-                    component: RouteView,
-                    meta: {title: 'menu.dashboard'},
-                    children: [
-                        {
-                            path: '/home',
-                            name: 'HomePage',
-                            component: () => import('@/page/home/Home'),
-                            meta: {title: 'home.title'}
-                        },
-                    ]
-                },
-                // 异常页面
-                {
-                    path: '/exception',
-                    name: 'exception',
-                    component: RouteView,
-                    redirect: '/exception/403',
-                    meta: {title: 'menu.exception', icon: 'warning', permission: ['exception']},
-                    children: [
-                        {
-                            path: '/exception/403',
-                            name: 'Exception403',
-                            component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/403'),
-                            meta: {title: 'menu.exception.not-permission', permission: ['exception']}
-                        },
-                        {
-                            path: '/exception/404',
-                            name: 'Exception404',
-                            component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/404'),
-                            meta: {title: 'menu.exception.not-find', permission: ['exception']}
-                        },
-                        {
-                            path: '/exception/500',
-                            name: 'Exception500',
-                            component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/500'),
-                            meta: {title: 'menu.exception.server-error', permission: ['exception']}
-                        }
-                    ]
+                    path: '/home/index',
+                    name: 'HomeIndex',
+                    component: () => import('@/page/home/Home'),
+                    meta: {title: 'menu.dashboard.home', icon: 'home'}
                 },
             ]
         },
+        // 异常页面
+        {
+            path: '/exception',
+            name: 'exception',
+            component: RouteView,
+            redirect: '/exception/403',
+            meta: {title: 'menu.exception', hidden: true, icon: 'warning'},
+            children: [
+                {
+                    path: '/exception/403',
+                    name: 'Exception403',
+                    component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/403'),
+                    meta: {title: 'menu.exception.not-permission', hidden: true, icon: 'warning'}
+                },
+                {
+                    path: '/exception/404',
+                    name: 'Exception404',
+                    component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/404'),
+                    meta: {title: 'menu.exception.not-find', hidden: true, icon: 'warning'}
+                },
+                {
+                    path: '/exception/500',
+                    name: 'Exception500',
+                    component: () => import(/* webpackChunkName: "fail" */ '@/page/exception/500'),
+                    meta: {title: 'menu.exception.server-error', hidden: true, icon: 'warning'}
+                }
+            ]
+        },
+    ]
+}
+
+let router = new Router({
+    routes: [
+        BasicRouter,
         {
             path: '/subfield',
             redirect: '/subfield/index',
@@ -95,4 +97,30 @@ let router = new Router({
     ]
 })
 
+function trans(router = []) {
+    let temp = []
+    router.forEach(item => {
+        // if (!item.meta.hidden) {
+        if (item.children) {
+            temp.push({
+                title: item.meta.title,
+                key: item.path,
+                icon: item.meta.icon,
+                children: trans(item.children)
+            })
+        } else {
+            temp.push({
+                title: item.meta.title,
+                key: item.path,
+                icon: item.meta.icon,
+            })
+        }
+        // }
+    })
+    return temp
+}
+
+
 export default router
+
+export const menus  = trans(BasicRouter.children)

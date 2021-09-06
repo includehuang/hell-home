@@ -4,7 +4,7 @@
         <iframe class="special-effects" frameborder="no" src="/static/html/sakura.html"></iframe>
         <a-layout-header class='header-render' theme="#2F54EB">
             <div class="logo"/>
-            <h-menu/>
+            <h-menu :menus="menus" :selectedKeys="[$route.path]"/>
             <div class="header-extra"></div>
         </a-layout-header>
         <a-layout-content class='content-render'>
@@ -19,6 +19,7 @@
 <script>
 import LogoSvg from '../assets/logo.png'
 import HMenu from "@/components/layout/HMenu"
+import {menus} from '@/router'
 
 // noinspection SpellCheckingInspection
 export default {
@@ -29,6 +30,7 @@ export default {
     },
     data() {
         return {
+            menus,
             LIVE2D_SETTINGS: {
                 'waifuDraggable': 'axis-x',
                 'modelStorage': true,
@@ -48,11 +50,6 @@ export default {
             })
         }
     },
-    methods: {
-        i18nRender(key) {
-            return this.$t(`${key}`)
-        },
-    }
 }
 </script>
 
