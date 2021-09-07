@@ -10,9 +10,6 @@
     "message.error.500": "服务器错误，请稍后再试",
     "message.error.backHome": "返回首页",
 
-    "home.welcome": "欢迎来到 {0} 的个人站点",
-    "home.characteristic": "提瓦特旅行者 | 前端工程师 | 二次元患者 | 见习魔法师",
-
     "menu.dashboard": "首页",
     "menu.dashboard.home": "首页",
     "menu.exception": "异常",
@@ -27,5 +24,18 @@
     "request.error.500": "未知服务器错误",
 
     "error.code": "错误码",
-    "error.code.500": "未知服务器错误"
+    "error.code.500": "未知服务器错误",
+    "error.code.504": "网关超时",
+
+    "home.welcome": "欢迎来到 {0} 的个人站点",
+    "home.characteristic": "提瓦特旅行者 | 前端工程师 | 二次元患者 | 见习魔法师",
+    "home.project.all": "全部项目",
+    "home.project.run": "进行中的项目",
+    "home.behaviour": "动态",
+    "home.behaviour.in": " 在 ",
+    "home.quick.route": "快速开始 / 便捷导航",
+    "home.quick.route.add": "添加",
+    "home.axis": "贡献指数",
+    "home.team": "团队"
+
 }

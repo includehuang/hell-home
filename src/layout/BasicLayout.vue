@@ -174,4 +174,8 @@ export default {
     }
 }
 
+.ant-empty {
+    margin: 8px;
+}
+
 </style>
