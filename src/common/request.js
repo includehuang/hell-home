@@ -17,7 +17,7 @@ const vueObj = thisVue.$vueObj
 // }
 
 const request = axios.create({
-    baseURL: setBaseUrl(),
+    // baseURL: setBaseUrl(),
     timeout: 10000
 })
 
