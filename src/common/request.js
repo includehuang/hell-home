@@ -6,15 +6,15 @@ import * as QS from "autoprefixer"
 const thisVue = new Vue()
 const vueObj = thisVue.$vueObj
 
-const setBaseUrl = function() {
-    if (process.env.NODE_ENV === 'development') {
-        return  '/'
-    } else if (process.env.NODE_ENV === 'debug') {
-        return  '/'
-    } else if (process.env.NODE_ENV === 'production') {
-        return  'http://47.99.73.44:8082/'
-    }
-}
+// const setBaseUrl = function() {
+//     if (process.env.NODE_ENV === 'development') {
+//         return  '/'
+//     } else if (process.env.NODE_ENV === 'debug') {
+//         return  '/'
+//     } else if (process.env.NODE_ENV === 'production') {
+//         return  'http://47.99.73.44:3000/'
+//     }
+// }
 
 const request = axios.create({
     baseURL: setBaseUrl(),
