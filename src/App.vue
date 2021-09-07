@@ -13,6 +13,7 @@ import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
 import BilibiliPlayer from "@/components/player/BilibiliPlayer"
 import 'moment/locale/zh-cn'
 
+const request = () => import("@/common/request")
 export default {
     name: 'App',
     components: {BilibiliPlayer},
@@ -23,6 +24,7 @@ export default {
     },
     mounted() {
         Vue.prototype.$vueObj = this
+        Vue.prototype.$request = request
         Vue.prototype.$hideLive2d = () => {this.live2dDisplay = 'none'}
         Vue.prototype.$showLive2d = () => {this.live2dDisplay = 'display'}
 
