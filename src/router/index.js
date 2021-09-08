@@ -185,22 +185,22 @@ let router = new Router({
 function trans(router = []) {
     let temp = []
     router.forEach(item => {
-        // if (!item.meta.hidden) {
-        if (item.children) {
-            temp.push({
-                title: item.meta.title,
-                key: item.path,
-                icon: item.meta.icon,
-                children: trans(item.children)
-            })
-        } else {
-            temp.push({
-                title: item.meta.title,
-                key: item.path,
-                icon: item.meta.icon,
-            })
+        if (!item.meta.hidden) {
+            if (item.children) {
+                temp.push({
+                    title: item.meta.title,
+                    key: item.path,
+                    icon: item.meta.icon,
+                    children: trans(item.children)
+                })
+            } else {
+                temp.push({
+                    title: item.meta.title,
+                    key: item.path,
+                    icon: item.meta.icon,
+                })
+            }
         }
-        // }
     })
     return temp
 }
@@ -208,4 +208,4 @@ function trans(router = []) {
 
 export default router
 
-export const menus  = trans(BasicRouter.children)
+export const menus = trans(BasicRouter.children)
