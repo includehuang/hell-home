@@ -9,9 +9,10 @@ const RouteView = {
     render: h => h('router-view')
 }
 
+/* 基于BasicLayout的页面，默认显示在页面顶部导航栏，配置meta.disabled = true后隐藏 */
 const BasicRouter = {
     path: '/',
-    redirect: '/home',
+    redirect: '/Home',
     component: BasicLayout,
     meta: {title: '/', icon: 'home'},
     children: [
@@ -19,13 +20,97 @@ const BasicRouter = {
             path: '/home',
             redirect: '/home/index',
             component: RouteView,
-            meta: {title: 'menu.dashboard', icon: 'home'},
+            meta: {title: 'menu.home', icon: 'home'},
             children: [
                 {
                     path: '/home/index',
                     name: 'HomeIndex',
                     component: () => import('@/page/home/Home'),
-                    meta: {title: 'menu.dashboard.home', icon: 'home'}
+                    meta: {title: 'menu.home.index', icon: 'home'}
+                },
+            ]
+        },
+        {
+            path: '/Teyvat',
+            redirect: '/Teyvat/index',
+            component: RouteView,
+            meta: {title: 'menu.teyvat', icon: 'home'},
+            children: [
+                {
+                    path: '/Teyvat/index',
+                    name: 'TeyvatIndex',
+                    component: () => import('@/page/Teyvat/Teyvat'),
+                    meta: {title: 'menu.teyvat.index', icon: 'home'}
+                },
+            ]
+        },
+        {
+            path: '/TwoDimensions',
+            redirect: '/TwoDimensions/index',
+            component: RouteView,
+            meta: {title: 'menu.twoDimensions', icon: 'home'},
+            children: [
+                {
+                    path: '/TwoDimensions/index',
+                    name: 'TwoDimensionsIndex',
+                    component: () => import('@/page/TwoDimensions/TwoDimensions'),
+                    meta: {title: 'menu.twoDimensions.index', icon: 'home'}
+                },
+            ]
+        },
+        {
+            path: '/Eguo',
+            redirect: '/Eguo/index',
+            component: RouteView,
+            meta: {title: 'menu.eguo', icon: 'home'},
+            children: [
+                {
+                    path: '/Eguo/index',
+                    name: 'EguoIndex',
+                    component: () => import('@/page/Eguo/Eguo'),
+                    meta: {title: 'menu.eguo.index', icon: 'home'}
+                },
+            ]
+        },
+        {
+            path: '/Front',
+            redirect: '/Front/index',
+            component: RouteView,
+            meta: {title: 'menu.front', icon: 'home'},
+            children: [
+                {
+                    path: '/Front/index',
+                    name: 'HomeIndex',
+                    component: () => import('@/page/Front/Front'),
+                    meta: {title: 'menu.front.index', icon: 'home'}
+                },
+            ]
+        },
+        {
+            path: '/Study',
+            redirect: '/Study/index',
+            component: RouteView,
+            meta: {title: 'menu.study', icon: 'home'},
+            children: [
+                {
+                    path: '/Study/index',
+                    name: 'StudyIndex',
+                    component: () => import('@/page/Study/Study'),
+                    meta: {title: 'menu.study.index', icon: 'home'}
+                },
+            ]
+        },
+        {
+            path: '/Essay',
+            redirect: '/Essay/index',
+            component: RouteView,
+            meta: {title: 'menu.essay', icon: 'home'},
+            children: [
+                {
+                    path: '/Essay/index',
+                    name: 'EssayIndex',
+                    component: () => import('@/page/Essay/Essay'),
+                    meta: {title: 'menu.essay.index', icon: 'home'}
                 },
             ]
         },

@@ -37,7 +37,7 @@
                                     <a-card-meta>
                                         <div slot="title" class="card-title">
                                             <a-avatar size="small" :src="item.cover"/>
-                                            <a>{{ item.title }}</a>
+                                            <a :href="`/#${item.route}`">{{ $t(item.title) }}</a>
                                         </div>
                                         <div slot="description" class="card-description">
                                             {{ item.description }}
