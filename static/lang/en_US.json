@@ -1,12 +1,8 @@
 {
-    "message.test": "TestMessage",
-    "message.test.1": "The One Test",
-    "message.test.2": "The Two Test",
-    "message.test.3": "The Three Test",
-    "message.test.4": "The Four Test",
 
     "message.error.403": "Sorry, you don't have access to this page.",
     "message.error.404": "Sorry, the page you visited does not exist.",
     "message.error.500": "Sorry, the server is reporting an error.",
     "message.error.backHome": "Back Home"
+
 }

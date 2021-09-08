@@ -7,7 +7,7 @@
             </div>
             <div class="header-content">
                 <div class="header-title">
-                    <span class="welcome-text">{{ $t('home.welcome', [author]) }}</span>
+                    <span class="welcome-text">{{ $t('home.welcome', [$t('HellVision')]) }}</span>
                 </div>
                 <div>{{ $t('home.characteristic') }}</div>
             </div>
@@ -133,7 +133,6 @@ export default {
             nowTime: this.$moment().format('HH: mm: ss'),
             openTime: this.$moment().format('HH'),
             avatar: '/static/img/common/avatar.jpg',
-            author: 'Hell Vision',
             loading: true,
             btnGroup: [],
             projects: [],

@@ -1,9 +1,6 @@
 {
-    "message.test": "测试message",
-    "message.test.1": "第一条测试",
-    "message.test.2": "第二条测试",
-    "message.test.3": "第三条测试",
-    "message.test.4": "第四条测试",
+
+    "HellVision": "人间惊鸿客",
 
     "message.error.403": "您没有访问该页面的权限。",
     "message.error.404": "您所访问的页面不存在。",
