@@ -40,7 +40,11 @@ const BasicRouter = {
                     path: '/Teyvat/index',
                     name: 'TeyvatIndex',
                     component: () => import('@/page/Teyvat/Teyvat'),
-                    meta: {title: 'menu.teyvat.index', icon: 'home'}
+                    meta: {title: 'menu.teyvat.index', icon: 'home'},
+                    beforeEnter: (to, from, next) => {
+                        next(false)
+                        window.open('https://bbs.mihoyo.com/ys/')
+                    }
                 },
             ]
         },
