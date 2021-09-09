@@ -146,6 +146,22 @@ const BasicRouter = {
                 }
             ]
         },
+        // 测试页面
+        {
+            path: '/test',
+            name: 'test',
+            component: RouteView,
+            redirect: '/test/index',
+            meta: {title: 'test', hidden: true, icon: 'warning'},
+            children: [
+                {
+                    path: '/test/index',
+                    name: 'TestIndex',
+                    component: () => import(/* webpackChunkName: "fail" */ '@/test/Index'),
+                    meta: {title: 'test.index', hidden: true, icon: 'warning'}
+                }
+            ]
+        },
     ]
 }
 
