@@ -146,7 +146,7 @@ export default {
             axisOption: null,
             axisDom: null,
             content: '',
-            url: require('@/test/static/personList.md'),
+            url: 'static/test/personList.md',
         }
     },
     mounted() {
