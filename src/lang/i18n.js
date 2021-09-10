@@ -1,13 +1,18 @@
 import Vue from "vue"
 import VueI18n from "vue-i18n"
-import zh_CH from "./common/zh_CN"
+import zh_CN from "./common/zh_CN"
 import en_US from "./common/en_US"
+import zh_CN_message from "@/lang/common/zh_CN_message"
+import en_US_message from "@/lang/common/en_US_message"
 
 Vue.use(VueI18n)
 
+const ZH_CN = {...zh_CN, ...zh_CN_message}
+const EN_US = {...en_US, ...en_US_message}
+
 const messages = {
-    'zh-CN': zh_CH,
-    'en-US': en_US,
+    'zh-CN': ZH_CN,
+    'en-US': EN_US,
 }
 
 const getLocale = function() { // 默认使用中文

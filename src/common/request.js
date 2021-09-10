@@ -6,18 +6,18 @@ import * as QS from "autoprefixer"
 const thisVue = new Vue()
 const vueObj = thisVue.$vueObj
 
-const setBaseUrl = function() {
-    if (process.env.NODE_ENV === 'development') {
-        return  '/'
-    } else if (process.env.NODE_ENV === 'debug') {
-        return  '/'
-    } else if (process.env.NODE_ENV === 'production') {
-        return  'http://47.99.73.44:8082/'
-    }
-}
+// const setBaseUrl = function() {
+//     if (process.env.NODE_ENV === 'development') {
+//         return  '/'
+//     } else if (process.env.NODE_ENV === 'debug') {
+//         return  '/'
+//     } else if (process.env.NODE_ENV === 'production') {
+//         return  'http://47.99.73.44:3000/'
+//     }
+// }
 
 const request = axios.create({
-    baseURL: setBaseUrl(),
+    // baseURL: setBaseUrl(),
     timeout: 10000
 })
 
@@ -66,7 +66,7 @@ request.interceptors.response.use(
                 // 清除本地token和清空vuex中token对象
                 // 跳转登录页面
                 case 403:
-                    vueObj.$message.warning('登录过期，请重新登录')
+                    vueObj.$message.warning(vueObj.$t('request.error.403'))
                     // 清除token
                     localStorage.removeItem('token')
                     // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
@@ -74,11 +74,11 @@ request.interceptors.response.use(
 
                 // 404请求不存在
                 case 404:
-                    vueObj.$message.error('请求错误，路径不存在')
+                    vueObj.$message.error(vueObj.$t('request.error.404'))
                     break
                 // 其他错误，直接抛出错误提示
                 default:
-                    vueObj.$message.error(error.response.status)
+                    vueObj.$message.error(vueObj.$t(`error.code.${error.response.status}`))
                     break
             }
             return Promise.reject(error.response)
@@ -87,27 +87,53 @@ request.interceptors.response.use(
 )
 
 // 封装get
-export function get(url, params) {
+export function get({
+    url = '/',
+    params = undefined,
+    isSuccessTip = false,
+    isErrorTip = false,
+    successStr = 'request.success.tip',
+    errorStr = 'request.error.tip'
+}) {
     return new Promise((resolve, reject) => {
         request.get(url, {
             params: params
         }).then(res => {
-            resolve(res.data)
+            if (isSuccessTip) {
+                vueObj.$message.success(vueObj.$t(successStr))
+            }
+            resolve(res)
         }).catch(err => {
-            reject(err.data)
+            if (isErrorTip) {
+                vueObj.$message.success(vueObj.$t(errorStr))
+            }
+            reject(err)
         })
     })
 }
 
 // 封装post
-export function post(url, params) {
+export function post({
+    url = '/',
+    params = undefined,
+    isSuccessTip = false,
+    isErrorTip = false,
+    successStr = 'request.success.tip',
+    errorStr = 'request.error.tip'
+}) {
     return new Promise((resolve, reject) => {
         request.post(url, QS.stringify(params))
             .then(res => {
-                resolve(res.data)
+                if (isSuccessTip) {
+                    vueObj.$message.success(vueObj.$t(successStr))
+                }
+                resolve(res)
             })
             .catch(err => {
-                reject(err.data)
+                if (isErrorTip) {
+                    vueObj.$message.success(vueObj.$t(errorStr))
+                }
+                reject(err)
             })
     })
 }

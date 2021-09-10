@@ -1,0 +1,246 @@
+{
+    "projects": [
+        {
+            "id": 1,
+            "cover": "https://img-static.mihoyo.com/mainPage/ys-logo.png",
+            "title": "project.Teyvat",
+            "description": "那是一种内在的东西， 他们到达不了，也无法触及的",
+            "status": 1,
+            "author": "科学搬砖组",
+            "updatedTime": "2021-09-03 00:00:00",
+            "route": "/Teyvat"
+        },
+        {
+            "id": 2,
+            "cover": "https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png",
+            "title": "project.TwoDimensions",
+            "description": "希望是一个好东西，也许是最好的，好东西是不会消亡的",
+            "status": 1,
+            "author": "科学搬砖组",
+            "updatedTime": "2021-09-04 00:00:00",
+            "route": "/TwoDimensions"
+        },
+        {
+            "id": 3,
+            "cover": "https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png",
+            "title": "project.Eguo",
+            "description": "城镇中有那么多的酒馆，她却偏偏走进了我的酒馆",
+            "status": 1,
+            "author": "科学搬砖组",
+            "updatedTime": "2021-09-05 00:00:00",
+            "route": "/Eguo"
+        },
+        {
+            "id": 4,
+            "cover": "https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png",
+            "title": "project.Front",
+            "description": "那时候我只会想自己想要什么，从不想自己拥有什么",
+            "status": 1,
+            "author": "科学搬砖组",
+            "updatedTime": "2021-09-06 00:00:00",
+            "route": "/Front"
+        },
+        {
+            "id": 5,
+            "cover": "https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png",
+            "title": "project.Study",
+            "description": "凛冬将至",
+            "status": 1,
+            "author": "科学搬砖组",
+            "updatedTime": "2021-09-07 00:00:00",
+            "route": "/Study"
+        },
+        {
+            "id": 6,
+            "cover": "https://gw.alipayobjects.com/zos/rmsportal/ComBAopevLwENQdKWiIn.png",
+            "title": "project.Essay",
+            "description": "生命就像一盒巧克力，结果往往出人意料",
+            "status": 1,
+            "author": "科学搬砖组",
+            "updatedTime": "2021-09-08 00:00:00",
+            "route": "/Essay"
+        }
+    ],
+    "activities": [
+        {
+            "id": 1,
+            "user": {
+                "nickname": "@name",
+                "avatar": "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
+            },
+            "project": {
+                "name": "白鹭酱油开发组",
+                "action": "更新",
+                "event": "番组计划"
+            },
+            "time": "2018-08-23 14:47:00"
+        },
+        {
+            "id": 1,
+            "user": {
+                "nickname": "蓝莓酱",
+                "avatar": "https://gw.alipayobjects.com/zos/rmsportal/jZUIxmJycoymBprLOUbT.png"
+            },
+            "project": {
+                "name": "白鹭酱油开发组",
+                "action": "更新",
+                "event": "番组计划"
+            },
+            "time": "2018-08-23 09:35:37"
+        },
+        {
+            "id": 1,
+            "user": {
+                "nickname": "@name",
+                "avatar": "@image(64x64)"
+            },
+            "project": {
+                "name": "白鹭酱油开发组",
+                "action": "创建",
+                "event": "番组计划"
+            },
+            "time": "2017-05-27 00:00:00"
+        },
+        {
+            "id": 1,
+            "user": {
+                "nickname": "曲丽丽",
+                "avatar": "@image(64x64)"
+            },
+            "project": {
+                "name": "高逼格设计天团",
+                "action": "更新",
+                "event": "六月迭代"
+            },
+            "time": "2018-08-23 14:47:00"
+        },
+        {
+            "id": 1,
+            "user": {
+                "nickname": "@name",
+                "avatar": "@image(64x64)"
+            },
+            "project": {
+                "name": "高逼格设计天团",
+                "action": "created",
+                "event": "六月迭代"
+            },
+            "time": "2018-08-23 14:47:00"
+        },
+        {
+            "id": 1,
+            "user": {
+                "nickname": "曲丽丽",
+                "avatar": "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
+            },
+            "project": {
+                "name": "高逼格设计天团",
+                "action": "created",
+                "event": "六月迭代"
+            },
+            "time": "2018-08-23 14:47:00"
+        }
+    ],
+    "btnGroup": [
+        {
+            "label": "操作一",
+            "href": "#"
+        },
+        {
+            "label": "操作二",
+            "href": "#"
+        },
+        {
+            "label": "操作三",
+            "href": "#"
+        },
+        {
+            "label": "操作四",
+            "href": "#"
+        },
+        {
+            "label": "操作五",
+            "href": "#"
+        },
+        {
+            "label": "操作六",
+            "href": "#"
+        }
+    ],
+    "axisData": [
+        {
+            "item": "引用", "a": 70, "b": 30, "c": 40},
+        {
+            "item": "口碑", "a": 60, "b": 70, "c": 40},
+        {
+            "item": "产量", "a": 50, "b": 60, "c": 40},
+        {
+            "item": "贡献", "a": 40, "b": 50, "c": 40},
+        {
+            "item": "热度", "a": 60, "b": 70, "c": 40},
+        {
+            "item": "引用", "a": 70, "b": 50, "c": 40}
+    ],
+    "teams": [
+        {
+            "id": 1,
+            "name": "科学搬砖组",
+            "avatar": "https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
+        },
+        {
+            "id": 2,
+            "name": "程序员日常",
+            "avatar": "https://gw.alipayobjects.com/zos/rmsportal/cnrhVkzwxjPwAaCfPbdc.png"
+        },
+        {
+            "id": 1,
+            "name": "设计天团",
+            "avatar": "https://gw.alipayobjects.com/zos/rmsportal/gaOngJwsRYRaVAuXXcmB.png"
+        },
+        {
+            "id": 1,
+            "name": "中二少女团",
+            "avatar": "https://gw.alipayobjects.com/zos/rmsportal/ubnKSIfAJTxIgXOKlciN.png"
+        },
+        {
+            "id": 1,
+            "name": "骗你学计算机",
+            "avatar": "https://gw.alipayobjects.com/zos/rmsportal/WhxKECPNujWoWEFNdnJE.png"
+        }
+    ],
+    "axisOption": {
+        "legend": {
+            "data": [
+                "Hell Vision", "祎果", "基础管理员"
+            ],
+            "bottom": true
+        },
+        "radar": {
+            "indicator": [
+                { "name": "引用", "max": 100},
+                { "name": "热度", "max": 100},
+                { "name": "贡献", "max": 100},
+                { "name": "产量", "max": 100},
+                { "name": "口碑", "max": 100}
+            ]
+        },
+        "series": [{
+            "name": "预算 vs 开销（Budget vs spending）",
+            "type": "radar",
+            "data": [
+                {
+                    "value": [50, 50, 50, 50, 50],
+                    "name": "基础管理员"
+                },
+                {
+                    "value": [20, 20, 80, 100, 95],
+                    "name": "Hell Vision"
+                },
+                {
+                    "value": [70, 75, 0, 45, 55],
+                    "name": "祎果"
+                }
+            ]
+        }]
+    }
+}

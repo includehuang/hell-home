@@ -2,6 +2,7 @@ import STYLE from '@res/config/style.json'
 import Vue from "vue"
 
 const thisVue = new Vue()
+// eslint-disable-next-line no-unused-vars
 const vueObj = thisVue.$vueObj
 
 export default function() {
@@ -32,8 +33,17 @@ export default function() {
         }
         // 是否需要蒙版
         if (STYLE['window.bg.noMask']) {
-            document.getElementsByClassName('bg-mask')[0].style.display = 'none'
-            vueObj.$store.commit('setNoMask', true)
+            document.styleSheets[0].insertRule('.bg-mask {display: none;}', 0)
+        }else {
+            // 设置蒙版透明度
+            document.styleSheets[0].insertRule(`.bg-mask {opacity: ${STYLE['window.bg.mask.opacity']};}`, 0)
+        }
+        // 是否需要特效层
+        if (STYLE['window.bg.noSpecial']) {
+            document.styleSheets[0].insertRule('.special-effects {display: none;}', 0)
+        }else {
+            // 设置特效层透明度
+            document.styleSheets[0].insertRule(`.special-effects {opacity: ${STYLE['window.bg.special.opacity']};}`, 0)
         }
     }, 0)
 

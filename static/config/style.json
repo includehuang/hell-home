@@ -11,5 +11,8 @@
     "--notes.0002": "页面风格设置",
     "window.size.font": 14,
     "window.scroll.hide": true,
-    "window.bg.noMask": false
+    "window.bg.noMask": false,
+    "window.bg.mask.opacity": 0.35,
+    "window.bg.noSpecial": false,
+    "window.bg.special.opacity": 0.65
 }
