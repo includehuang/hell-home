@@ -4,7 +4,7 @@ import 'markdown-it-vue/dist/markdown-it-vue.css'
 // noinspection JSUnusedLocalSymbols
 const markdown = {
     install: function(Vue, option) {
-        Vue.component('markdown', MarkdownItVue)
+        Vue.component(MarkdownItVue.name, MarkdownItVue)
     }
 }
 export default markdown

@@ -14,15 +14,17 @@
     "dependencies": {
         "ant-design-vue": "^1.7.8",
         "axios": "^0.21.1",
+        "highlight.js": "^11.2.0",
         "less": "^4.1.1",
         "less-loader": "^4.1.0",
         "markdown-it-vue": "^1.1.6",
+        "moment": "^2.29.1",
         "vue": "^2.5.2",
         "vue-i18n": "^8.25.0",
         "vue-router": "^3.0.1",
         "vuex": "^3.6.2",
         "waifus": "^1.2.2",
-        "moment": "^2.29.1"
+        "wangeditor": "^4.7.8"
     },
     "devDependencies": {
         "autoprefixer": "^7.1.2",
