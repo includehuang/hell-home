@@ -152,13 +152,19 @@ const BasicRouter = {
             name: 'test',
             component: RouteView,
             redirect: '/test/index',
-            meta: {title: 'test', hidden: true, icon: 'warning'},
+            meta: {title: 'test', hidden: false, icon: 'warning'},
             children: [
                 {
                     path: '/test/index',
                     name: 'TestIndex',
                     component: () => import(/* webpackChunkName: "fail" */ '@/test/Index'),
-                    meta: {title: 'test.index', hidden: true, icon: 'warning'}
+                    meta: {title: 'test.index', hidden: false, icon: 'warning'}
+                },
+                {
+                    path: '/test/player',
+                    name: 'TestPlayer',
+                    component: () => import(/* webpackChunkName: "fail" */ '@/test/player/Player'),
+                    meta: {title: 'test.index', hidden: false, icon: 'warning'}
                 }
             ]
         },

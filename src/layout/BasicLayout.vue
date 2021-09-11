@@ -5,7 +5,10 @@
         <a-layout-header class='header-render' theme="#2F54EB">
             <div class="logo"/>
             <h-menu :menus="menus" :selectedKeys="[$route.path]"/>
-            <div class="header-extra"></div>
+            <div class="header-extra">
+                <iframe frameborder="no" marginwidth="0" marginheight="0" width=298 height=52
+                        src="//music.163.com/outchain/player?type=0&id=6852319897&auto=1&height=32"></iframe>
+            </div>
         </a-layout-header>
         <a-layout-content class='content-render'>
             <router-view/>
@@ -111,9 +114,9 @@ export default {
         .header-extra {
             display: inline-block;
             width: 120px;
-            height: 32px;
-            background: rgba(122, 122, 122, 0.2);
-            margin: 16px 0 16px 24px;
+            //height: 32px;
+            //background: rgba(122, 122, 122, 0.2);
+            margin: 4px 0 4px 24px;
         }
     }
 
