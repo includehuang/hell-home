@@ -1,5 +1,5 @@
 <template>
-    <div id="h-editor" :style="Object.assign(style, defaultStyle)">
+    <div id="h-editor" :style="Object.assign(hStyle, defaultStyle)">
         <div :id="id">
             <slot/>
         </div>
@@ -104,7 +104,7 @@ export default {
                 return { }
             }
         },
-        style: {
+        hStyle: {
             type: Object,
             default: () => {
                 return { }
