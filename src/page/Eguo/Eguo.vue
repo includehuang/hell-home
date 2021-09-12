@@ -6,15 +6,28 @@
             </div>
             <div class="header-content">
                 <div class="header-title">
-                    <span class="welcome-text">{{ $t('HellVision') }}</span>
+                    <span>{{ $t('HellVision') }}</span>
                 </div>
-                <div>{{ saying }}</div>
+                <div :title="saying">{{ saying }}</div>
             </div>
             <div class="header-extra">
                 <div class="header-title">
-                    <span class="welcome-text">{{ $t('project.Eguo') }}</span>
+                    <span>{{ $t('project.Eguo.title') }}</span>
                 </div>
             </div>
+        </div>
+        <div class="content">
+            <a-row :gutter="24">
+                <h-carousel :img-list="['/static/img/ayaka.png', '/static/img/ayaka2.png', '/static/img/common/avatar.jpg']" style="width: 900px; margin: 0 auto"/>
+            </a-row>
+            <a-row :gutter="24">
+                <a-col :xl="16" :lg="24" :md="24" :sm="24" :xs="24">
+                    <div style="height: 400px"></div>
+                </a-col>
+                <a-col style="padding: 0 12px" :xl="8" :lg="24" :md="24" :sm="24" :xs="24">
+                    <div style="height: 400px"></div>
+                </a-col>
+            </a-row>
         </div>
     </div>
 </template>
@@ -22,9 +35,11 @@
 <script>
 
 import factory from "@/page/Eguo/factory"
+import HCarousel from "@/components/layout/HCarousel"
 
 export default {
     name: "Eguo",
+    components: {HCarousel},
     data() {
         return {
             sayingList: [],
@@ -102,11 +117,27 @@ export default {
                 margin-bottom: 12px;
                 color: @fontMain;
                 font-weight: 500;
-                font-size: 20px;
+                font-size: 18px;
                 line-height: 28px;
                 min-height: 28px;
             }
         }
     }
+
+    .content {
+
+        width: 1200px;
+        margin: 12px auto;
+
+        .carousel {
+            text-align: center;
+            height: 160px;
+            line-height: 160px;
+            background: #364d79;
+            overflow: hidden;
+        }
+    }
+
 }
+
 </style>

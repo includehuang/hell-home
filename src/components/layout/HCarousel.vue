@@ -17,6 +17,8 @@
                     <a-icon type="right-circle" />
                 </div>
             </slot>
+            <slot name="customPaging">
+            </slot>
         </a-carousel>
     </div>
 </template>
@@ -75,6 +77,9 @@ export default {
 <style lang="less">
 
 #h-carousel {
+
+    text-align: center;
+
     .custom-slick-arrow {
         width: 25px;
         height: 25px;
@@ -82,9 +87,11 @@ export default {
         color: #fff;
         //background-color: rgba(31, 45, 61, 0.11);
     }
+
     .custom-slick-arrow:before {
         display: none;
     }
+
     .custom-slick-arrow:hover {
         color: #1890ff;
     }
