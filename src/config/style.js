@@ -1,11 +1,13 @@
 import STYLE from '@res/config/style.json'
-import Vue from "vue"
+// import Vue from "vue"
 
-const thisVue = new Vue()
-// eslint-disable-next-line no-unused-vars
-const vueObj = thisVue.$vueObj
 
 export default function() {
+    // // 获取vue实例
+    // const thisVue = new Vue()
+    // // eslint-disable-next-line no-unused-vars
+    // const vueObj = thisVue.$vueObj
+
     // 根据屏幕宽度设置背景图尺寸
     document.documentElement.style.backgroundSize = `${window.screen.width}px`
     // 设置基础字体大小

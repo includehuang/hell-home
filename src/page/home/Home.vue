@@ -132,7 +132,7 @@ export default {
         return {
             nowTime: this.$moment().format('HH: mm: ss'),
             openTime: this.$moment().format('HH'),
-            avatar: '/static/img/common/avatar.jpg',
+            avatar: '',
             loading: true,
             btnGroup: [],
             projects: [],
@@ -144,6 +144,8 @@ export default {
         }
     },
     mounted() {
+        this.avatar = this.$store.common.avatar
+
         factory.getProjects().then(res => {
             this.loading = false
             this.projects = res.projects

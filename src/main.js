@@ -13,6 +13,9 @@ import markdown from "@/tool/markdown/markdown"
 import * as echarts from 'echarts'
 import moment from "moment"
 
+import style from "@/config/style"
+import common from "@/config/common"
+
 Vue.use(waifu)
 Vue.use(antd)
 Vue.use(VueI18n)
@@ -24,9 +27,6 @@ Vue.prototype.$echarts = echarts
 // noinspection JSUnusedGlobalSymbols
 Vue.prototype.$moment = moment
 
-import style from "./config/style"
-style()
-
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
@@ -36,3 +36,6 @@ new Vue({
     components: {App},
     template: '<App/>'
 })
+
+style()
+common()
