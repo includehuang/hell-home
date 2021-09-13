@@ -2,7 +2,7 @@
     "--notes.0001": "['image', 'list', 'video'], video暂时不支持",
     "background.type": "image",
     "background.image": "/static/img/ayaka.png",
-    "background.list": ["/static/img/ayaka.png", "/static/img/ayaka2.png"],
+    "background.list": ["/static/img/ayaka.png", "/static/img/ayaka2.png", "/static/img/ayaka3.png", "/static/img/ayaka4.png"],
     "background.space": 60000,
     "background.size": "auto",
     "background.video": "",
