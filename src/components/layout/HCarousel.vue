@@ -1,99 +1,133 @@
 <template>
-    <div>
-        <a-carousel autoplay arrows id="h-carousel">
-            <template v-if="imgList.length" v-for="(item, index) in imgList">
-                <img :src="item" :key="index" :style="imgStyle">
-            </template>
-            <template v-else>
-                <slot/>
-            </template>
-            <slot name="prevArrow">
-                <div slot="prevArrow" class="custom-slick-arrow" :style="{...btnStyle, ...leftBtnStyle}">
-                    <a-icon type="left-circle" />
+    <div id="h-carousel">
+        <div class="swiper-box">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="(item,index) in images" :key="index">
+                        <a :href="item.href || item.src || item" :target="item.target || '_self'">
+                            <img class="swiper-img" :src="item.src || item"/>
+                        </a>
+                    </div>
                 </div>
-            </slot>
-            <slot name="nextArrow">
-                <div slot="nextArrow" class="custom-slick-arrow" :style="{...btnStyle, ...rightBtnStyle}">
-                    <a-icon type="right-circle" />
-                </div>
-            </slot>
-            <slot name="customPaging">
-            </slot>
-        </a-carousel>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import Swiper from "swiper/swiper-bundle"
+import "swiper/swiper-bundle.css"
+
 export default {
     name: "HCarousel",
     props: {
-        imgList: {
+        images: {
             type: Array,
-            default() {
-                return []
+            default: () => {
+                return [
+                    {src: '/static/img/ayaka.png', href: '/static/img/ayaka.png', target: "_blank"},
+                    {src: '/static/img/ayaka2.png', href: '/static/img/ayaka2.png', target: "_blank"},
+                    {src: '/static/img/ayaka3.png', href: '/static/img/ayaka3.png', target: "_blank"},
+                    {src: '/static/img/ayaka4.png', href: '/static/img/ayaka4png', target: "_blank"},
+                ]
             }
         },
-        imgStyle: {
+        settings: {
             type: Object,
-            default() {
-                return {
-                }
-            }
-        },
-        btnStyle: {
-            type: Object,
-            default() {
-                return {
-                    'z-index': 1
-                }
-            }
-        },
-        leftBtnStyle: {
-            type: Object,
-            default() {
-                return {
-                    'left': '10px'
-                }
-            }
-        },
-        rightBtnStyle: {
-            type: Object,
-            default() {
-                return {
-                    'right': '10px'
-                }
+            default: () => {
+                return {}
             }
         }
     },
     data() {
-        return {}
+        return {
+            option: {
+                effect: 'coverflow',
+                loop: true,
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 'auto',
+                slideToClickedSlide: true,
+                autoplay: {
+                    delay: 1500,
+                    disableOnInteraction: true,
+                },
+                coverflow: {
+                    rotate: 10,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: false,
+                },
+                spaceBetween: 30,
+            },
+            swiper: null,
+        }
     },
     mounted() {
+        this.swiper = new Swiper('.swiper-container', Object.assign(this.option, this.settings))
     },
-    methods: {}
+    methods: {
+    }
 }
 </script>
 
 <style lang="less">
 
 #h-carousel {
+    width: 100%;
+}
 
-    text-align: center;
+.swiper-box {
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    .swiper-container {
+        text-align: center;
+        z-index: 0;
+        width: 70%;
+        margin: 0 auto;
+        padding-top: 10px;
+        padding-bottom: 15px;
 
-    .custom-slick-arrow {
-        width: 25px;
-        height: 25px;
-        font-size: 25px;
-        color: #fff;
-        //background-color: rgba(31, 45, 61, 0.11);
+
+        .swiper-wrapper {
+
+            .swiper-slide {
+                background-position: center;
+                background-size: cover;
+                width: 80%;
+
+                .swiper-img {
+                    border-radius: 10px;
+                    width: 100%;
+                }
+
+
+            }
+        }
+
     }
+}
 
-    .custom-slick-arrow:before {
-        display: none;
+.swiper-slide-prev {
+    transform: translateX(60%) scale(80%) !important;
+
+    * {
+        pointer-events: none;
     }
+}
 
-    .custom-slick-arrow:hover {
-        color: #1890ff;
+.swiper-slide-active {
+    z-index: 10 !important;
+    transform: translateX(0) scale(100%) !important;
+}
+
+.swiper-slide-next {
+    transform: translateX(-60%) scale(80%) !important;
+
+    * {
+        pointer-events: none;
     }
 }
 

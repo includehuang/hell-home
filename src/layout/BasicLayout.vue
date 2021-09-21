@@ -84,7 +84,7 @@ export default {
         text-align: center;
         background: @backGround;
         min-width: 1200px;
-        box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+        box-shadow: @headerShadow;
         transition: background 0.3s, width 0.2s;
         z-index: 100;
 

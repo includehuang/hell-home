@@ -18,7 +18,7 @@
         </div>
         <div class="content">
             <a-row :gutter="24">
-                <h-carousel :img-list="['/static/img/ayaka.png', '/static/img/ayaka2.png', '/static/img/common/avatar.jpg']" style="width: 900px; margin: 0 auto"/>
+                <h-carousel :images="images" style="width: 1200px; margin: 0 auto"/>
             </a-row>
             <a-row :gutter="24">
                 <a-col :xl="16" :lg="24" :md="24" :sm="24" :xs="24">
@@ -44,6 +44,14 @@ export default {
         return {
             sayingList: [],
             saying: '',
+            images: [
+                {src: '/static/img/ayaka.png', href: '/static/img/ayaka.png', target: "_blank"},
+                {src: '/static/img/ayaka2.png', href: '/static/img/ayaka2.png', target: "_blank"},
+                {src: '/static/img/ayaka3.png', href: '/static/img/ayaka3.png', target: "_blank"},
+                {src: '/static/img/ayaka4.png', href: '/static/img/ayaka4png', target: "_blank"},
+                {src: '/static/test/test1.png', href: '/static/test/test1.png', target: "_self"},
+                {src: '/static/test/test2.png', href: '/static/test/test2.png', target: "_self"},
+            ]
         }
     },
     mounted() {
