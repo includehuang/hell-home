@@ -48,7 +48,7 @@ export default {
                 {src: '/static/img/ayaka.png', href: '/static/img/ayaka.png', target: "_blank"},
                 {src: '/static/img/ayaka2.png', href: '/static/img/ayaka2.png', target: "_blank"},
                 {src: '/static/img/ayaka3.png', href: '/static/img/ayaka3.png', target: "_blank"},
-                {src: '/static/img/ayaka4.png', href: '/static/img/ayaka4png', target: "_blank"},
+                {src: '/static/img/ayaka4.png', href: '/static/img/ayaka4.png', target: "_blank"},
                 {src: '/static/test/test1.png', href: '/static/test/test1.png', target: "_self"},
                 {src: '/static/test/test2.png', href: '/static/test/test2.png', target: "_self"},
             ]
