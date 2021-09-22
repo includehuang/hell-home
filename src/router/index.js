@@ -152,7 +152,7 @@ const BasicRouter = {
             name: 'test',
             component: RouteView,
             redirect: '/test/index',
-            meta: {title: 'test', hidden: false, icon: 'warning'},
+            meta: {title: 'test', hidden: true, icon: 'warning'},
             children: [
                 {
                     path: '/test/index',
