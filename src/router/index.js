@@ -171,43 +171,53 @@ const BasicRouter = {
     ]
 }
 
+/* 功能路由，在特定情况下用于占位实现特殊效果例如404等等 */
+const FunctionRouter = {
+    path: '*',
+    redirect: '/exception/404',
+}
+
+/* 扩展路由，默认不显示在顶部导航栏 */
+const SubfieldRouter = {
+    path: '/subfield',
+    redirect: '/subfield/index',
+    component: BasicLayout,
+    meta: {title: '/subfield'},
+    children: [
+        {
+            path: '/subfieldTemp',
+            redirect: '/subfield/index',
+            component: RouteView,
+            children: [
+                {
+                    path: '/subfield/index',
+                    name: 'SubfieldIndex',
+                    component: () => import('@/subfield/Index'),
+                    meta: {title: 'subfield.index'}
+                }
+            ]
+        }
+    ]
+}
+
+/* 补充路由，独立于主要系统之外的路由，不影响系统功能 */
+const SupplementRouter = {
+    path: '/timer',
+    name: 'timer',
+    component: () => import('@/subfield/timer/Timer')
+}
+
+/* 路由优先级 BasicRouter > SubfieldRouter > SupplementRouter > FunctionRouter */
 let router = new Router({
     routes: [
         BasicRouter,
-        {
-            path: '/subfield',
-            redirect: '/subfield/index',
-            component: BasicLayout,
-            meta: {title: '/subfield'},
-            children: [
-                {
-                    path: '/subfieldTemp',
-                    redirect: '/subfield/index',
-                    component: RouteView,
-                    children: [
-                        {
-                            path: '/subfield/index',
-                            name: 'SubfieldIndex',
-                            component: () => import('@/subfield/Index'),
-                            meta: {title: 'subfield.index'}
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            path: '/timer',
-            name: 'timer',
-            component: () => import('@/subfield/timer/Timer')
-        },
-        // 404重定向
-        {
-            path: '*',
-            redirect: '/exception/404',
-        }
+        SubfieldRouter,
+        SupplementRouter,
+        FunctionRouter
     ]
 })
 
+// 将路由列表转换为导航列表的方法
 function trans(router = []) {
     let temp = []
     router.forEach(item => {
@@ -234,4 +244,5 @@ function trans(router = []) {
 
 export default router
 
+// 默认导航
 export const menus = trans(BasicRouter.children)
