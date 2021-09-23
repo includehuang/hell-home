@@ -87,11 +87,10 @@ let Dom = {
                 let newTop = document.documentElement.scrollTop
                 let evChange = newTop - oldTop
                 oldTop = newTop
+                // 累计
                 change += evChange
 
-                // oEle.style.left = parseInt(oEle.style.left) + change + 'px'
-                console.log(`change = ${newTop} - ${oldTop}`)
-                console.log('变化的距离==========', change)
+                // 根据滚动距离修改top
                 oEle.style.top = parseInt(oEle.style.top) + evChange + 'px'
             }, 0)
         }

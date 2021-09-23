@@ -12,6 +12,7 @@ import i18n from "@/lang/i18n"
 import markdown from "@/tool/markdown/markdown"
 import * as echarts from 'echarts'
 import moment from "moment"
+import directive from "@/tool/directive/directive"
 
 import style from "@/config/style"
 import common from "@/config/common"
@@ -20,6 +21,7 @@ Vue.use(waifu)
 Vue.use(antd)
 Vue.use(VueI18n)
 Vue.use(markdown)
+Vue.use(directive)
 
 Vue.config.productionTip = false
 // noinspection JSUnusedGlobalSymbols

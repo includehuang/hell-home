@@ -38,7 +38,9 @@
             </a-row>
         </div>
 
-        <div style="position: absolute; width: 400px; height: 400px; background: #1890ff; left: 0; top: 0" @mousedown="drag">
+<!--        <div style="position: absolute; width: 400px; height: 400px; background: #1890ff; left: 0; top: 0" @mousedown="drag">-->
+<!--        </div>-->
+        <div style="position: absolute; width: 400px; height: 400px; background: #1890ff; left: 0; top: 0" v-drag>
         </div>
     </div>
 </template>
