@@ -21,105 +21,20 @@
 
         <div class="content">
             <a-row :gutter="24">
-                <markdown :content="content"/>
-            </a-row>
-            <a-row :gutter="24">
-                <a-col :xl="16" :lg="24" :md="24" :sm="24" :xs="24">
-                    <a-card
-                        class="project-list"
-                        style="margin-bottom: 24px;"
-                        :loading="loading"
-                        :bordered="false"
-                        :title="$t('home.project.run')"
-                        :body-style="{ padding: 0 }"
-                    >
-                        <a slot="extra">{{ $t('home.project.all') }}</a>
-                        <div v-if="projects.length">
-                            <a-card-grid class="project-card-grid" :key="i" v-for="(item, i) in projects">
-                                <a-card :bordered="false" :body-style="{ padding: 0 }">
-                                    <a-card-meta>
-                                        <div slot="title" class="card-title">
-                                            <a-avatar size="small" :src="item.cover"/>
-                                            <a :href="`/#${item.route}`">{{ $t(item.title) }}</a>
-                                        </div>
-                                        <div slot="description" class="card-description">
-                                            {{ item.description }}
-                                        </div>
-                                    </a-card-meta>
-                                    <div class="project-item">
-                                        <a href="/#">{{ item.author }}</a>
-                                        <span class="datetime">{{ $moment(item.updatedTime).fromNow() }}</span>
-                                    </div>
-                                </a-card>
-                            </a-card-grid>
-                        </div>
-                        <a-empty v-else/>
-                    </a-card>
+                <a-button @click="test">输出</a-button>
+                <h-editor ref="editor" id="testEditor" :config="{height: 1400}" button='<div class="w-e-menu" data-title="额外"><i class="w-e-icon-indent-decrease"></i></div>'>
+                    <pre><code class="Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">String</span>[] args)</span></span>{
+    <span class="hljs-type">int</span> a=<span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> a;
+}</code></pre><pre><code class="JavaScript"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"h-editor"</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">"Object.assign(style, defaultStyle)"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:id</span>=<span class="hljs-string">"id"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>/&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre><p data-we-empty-p=""><br></p>
+                </h-editor>
 
-                    <a-card :title="$t('home.behaviour')" :bordered="false" :loading="loading">
-                        <a-list v-if="activities.length">
-                            <a-list-item :key="index" v-for="(item, index) in activities">
-                                <a-list-item-meta>
-                                    <a-avatar slot="avatar" size="small" :src="item.user.avatar"/>
-                                    <div slot="title">
-                                        <span>{{ item.user.nickname }}</span>{{ $t('home.behaviour.in') }}
-                                        <a href="#">{{ item.project.name }}</a>
-                                        <span>{{ item.project.action }}</span>&nbsp;
-                                        <a href="#">{{ item.project.event }}</a>
-                                    </div>
-                                    <div slot="description">{{ item.time }}</div>
-                                </a-list-item-meta>
-                            </a-list-item>
-                        </a-list>
-                        <a-empty v-else/>
-                    </a-card>
-                </a-col>
-                <a-col
-                    style="padding: 0 12px"
-                    :xl="8"
-                    :lg="24"
-                    :md="24"
-                    :sm="24"
-                    :xs="24">
-                    <a-card
-                        :title="$t('home.quick.route')"
-                        style="margin-bottom: 24px"
-                        :loading="loading"
-                        :bordered="false"
-                        :body-style="{ padding: 0 }"
-                    >
-                        <div class="item-group" v-if="btnGroup.length">
-                            <a v-for="(item, index) in btnGroup" :key="index" :href="item.href">{{ item.label }}</a>
-                            <a-button size="small" type="primary" ghost icon="plus">{{ $t('home.quick.route.add') }}</a-button>
-                        </div>
-                        <a-empty v-else/>
-                    </a-card>
-                    <a-card
-                        :title="$t('home.axis')"
-                        style="margin-bottom: 24px"
-                        :bordered="false"
-                        :body-style="{ padding: 0 }"
-                    >
-                        <!-- 这里不使用card的loading是因为使用card时会导致echarts获取不到dom节点，v-show同理 -->
-                        <a-spin :spinning="loading" style="min-height: 60px">
-                            <div ref="axis" style="width: 360px; height: 400px; margin: 0 auto 24px;" v-show="axisOption"></div>
-                            <a-empty v-show="!loading && !axisOption"/>
-                        </a-spin>
-                    </a-card>
-                    <a-card :title="$t('home.team')" :bordered="false" :loading="loading">
-                        <div class="members" v-if="teams.length">
-                            <a-row>
-                                <a-col :span="12" v-for="(item, index) in teams" :key="index">
-                                    <a>
-                                        <a-avatar size="small" :src="item.avatar"/>
-                                        <span class="member">{{ item.name }}</span>
-                                    </a>
-                                </a-col>
-                            </a-row>
-                        </div>
-                        <a-empty v-else/>
-                    </a-card>
-                </a-col>
             </a-row>
         </div>
 
@@ -130,11 +45,11 @@
 
 <script>
 
-import factory from "@/page/home/factory"
-import {getStatic} from "@/common/requestStatic"
+import HEditor from "@/components/HEditor"
 
 export default {
     name: "Home",
+    components: {HEditor},
     data() {
         return {
             nowTime: this.$moment().format('HH: mm: ss'),
@@ -152,30 +67,127 @@ export default {
             url: 'static/test/personList.md',
         }
     },
+    computed: {
+        editor() {
+            return this.HyperMD.fromTextArea(this.myTextarea, {
+                // for code fence highlighting
+                hmdModeLoader: "https://cdn.jsdelivr.net/npm/codemirror/",
+            })
+        }
+    },
     mounted() {
-        factory.getProjects().then(res => {
-            this.loading = false
-            this.projects = res.projects
-            this.activities = res.activities
-            this.btnGroup = res.btnGroup
-            this.axisData = res.axisData
-            this.teams = res.teams
-            this.axisOption = res.axisOption
-            this.axisDom = this.$refs.axis
-            this.$echarts.init(this.axisDom).setOption(this.axisOption)
-        }).catch(res => {
-            this.loading = false
-        })
-
-        getStatic({url: this.url}).then(res => {
-            console.log(res)
-            this.content = res
-        })
 
         setInterval(() => {
             this.nowTime = this.$moment().format('HH: mm: ss')
+            // editor.config.height = 108
+            // editor.create()
         }, 1000)
 
+        console.log('store==========', this.$store.state.common.avatar)
+        this.$store.commit('avatar', 'ssssssssssssssss')
+        console.log('store==========', this.$store.state.common.avatar)
+
+    },
+    methods: {
+        test() {
+            console.log(this.$refs.editor.getContent())
+        },
+        drag(e) {
+            let oEle = e.target // 获取目标元素
+            let pEle = e.target.parentNode // 获取容器
+            let oldTop = document.documentElement.scrollTop // 滚动之前的位置
+            let change = 0 // 滚动总变化量
+            // 算出鼠标相对元素的位置
+            const disX = e.clientX - oEle.offsetLeft - pEle.offsetLeft
+            const disY = e.clientY - oEle.offsetTop - pEle.offsetTop
+
+            // 定义拖动事件
+            let dragHandler = ev => {
+
+                // 获取可视区域宽高
+                // const winX = this.getViewPortOffset().w
+                let scrY = this.getViewPortOffset().h
+
+                // 获取容器元素宽高
+                let conX = pEle.offsetWidth
+                let conY = pEle.offsetHeight
+
+                // 获取鼠标相对于父元素的位置
+                let parX = ev.clientX - pEle.offsetLeft
+                let parY = ev.clientY - pEle.offsetTop
+
+                // 获取元素实际宽高
+                let relX = oEle.offsetWidth
+                let relY = oEle.offsetHeight
+
+                // 用鼠标的位置减去鼠标相对元素的位置，得到元素的位置
+                let left = parX - disX
+                let top = parY - disY + change
+
+                // 防止元素溢出
+                if (left < 0) {
+                    left = 0
+                }else if (left + relX > conX) {
+                    left = conX - relX
+                }
+                if (top < 0) {
+                    top = 0
+                }else if (top + relY > conY) {
+                    top = conY - relY
+                }
+
+                // 移动当前元素
+                oEle.style.left = left + 'px'
+                oEle.style.top = top + 'px'
+            }
+
+            // 拖到底部发生滚动时解决方案
+            let scrollHandler = ev => {
+                setTimeout(() => {
+
+                    let newTop = document.documentElement.scrollTop
+                    let evChange = newTop - oldTop
+                    oldTop = newTop
+                    change += evChange
+
+                    // oEle.style.left = parseInt(oEle.style.left) + change + 'px'
+                    console.log(`change = ${newTop} - ${oldTop}`)
+                    console.log('变化的距离==========', change)
+                    oEle.style.top = parseInt(oEle.style.top) + evChange + 'px'
+                }, 0)
+            }
+
+            // 移除监听
+            let stopHandler = ev => {
+                document.removeEventListener('mousemove', dragHandler)
+                document.removeEventListener('mouseup', stopHandler)
+                document.removeEventListener('scroll', scrollHandler)
+            }
+
+            // 添加监听
+            document.addEventListener('mousemove', dragHandler)
+            document.addEventListener('mouseup', stopHandler)
+            document.addEventListener('scroll', scrollHandler)
+        },
+        // 获取可视区域宽高
+        getViewPortOffset() {
+            if (window.innerWidth) {
+                return {
+                    w: window.innerWidth,
+                    h: window.innerHeight,
+                }
+            } else if (document.compatMode === "BackCompat") {
+                return {
+                    w: document.body.clientWidth,
+                    h: document.body.clientHeight,
+                }
+            } else {
+                return {
+                    w: document.documentElement.clientWidth,
+                    h: document.documentElement.clientHeight,
+                }
+            }
+        }
     }
 }
 </script>
