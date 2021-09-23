@@ -122,6 +122,9 @@
                 </a-col>
             </a-row>
         </div>
+
+        <div style="position: absolute; width: 400px; height: 400px; background: #1890ff; left: 0; top: 0" @mousedown="drag">
+        </div>
     </div>
 </template>
 
@@ -183,6 +186,8 @@ export default {
 
 #home {
 
+    position: relative;
+
     .header {
 
         background: @backGround;
@@ -239,6 +244,7 @@ export default {
     .content {
 
         width: 1200px;
+        height: 2000px;
         margin: 12px auto;
 
         .markdown-body {
