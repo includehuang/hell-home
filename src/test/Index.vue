@@ -21,6 +21,9 @@
 
         <div class="content">
             <a-row :gutter="24">
+                <a-button @click="login">测试token</a-button><a-input v-model="token"></a-input>
+            </a-row>
+            <a-row :gutter="24">
                 <a-button @click="test">输出</a-button>
                 <h-editor ref="editor" id="testEditor" :config="{height: 1400}" button='<div class="w-e-menu" data-title="额外"><i class="w-e-icon-indent-decrease"></i></div>'>
                     <pre><code class="Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">String</span>[] args)</span></span>{
@@ -36,191 +39,23 @@
                 </h-editor>
 
             </a-row>
-            <a-row :gutter="24" :style="{background: '#ffffff'}">
-                <pre><code class="JavaScript">
-<span class="hljs-comment">// util.js</span>
-<span class="hljs-comment">/**
- * 使元素可拖动的方法
- * @mousedown="drag"
- * @param e
- */</span>
-<span class="hljs-function"><span class="hljs-title">drag</span><span class="hljs-params">(e)</span></span> {
-    let oEle = e<span class="hljs-selector-class">.target</span> <span class="hljs-comment">// 获取目标元素</span>
-    let pEle = e<span class="hljs-selector-class">.target</span><span class="hljs-selector-class">.parentNode</span> <span class="hljs-comment">// 获取容器</span>
-    let oldTop = document<span class="hljs-selector-class">.documentElement</span><span class="hljs-selector-class">.scrollTop</span> <span class="hljs-comment">// 滚动之前的位置</span>
-    let change = <span class="hljs-number">0</span> <span class="hljs-comment">// 滚动总变化量</span>
-    <span class="hljs-comment">// 算出鼠标相对元素的位置</span>
-    const disX = e<span class="hljs-selector-class">.clientX</span> - oEle<span class="hljs-selector-class">.offsetLeft</span> - pEle<span class="hljs-selector-class">.offsetLeft</span>
-    const disY = e<span class="hljs-selector-class">.clientY</span> - oEle<span class="hljs-selector-class">.offsetTop</span> - pEle<span class="hljs-selector-class">.offsetTop</span>
-
-    <span class="hljs-comment">// 定义拖动事件</span>
-    let dragHandler = ev =&gt; {
-
-        <span class="hljs-comment">// 获取容器元素宽高</span>
-        let conX = pEle<span class="hljs-selector-class">.offsetWidth</span>
-        let conY = pEle<span class="hljs-selector-class">.offsetHeight</span>
-
-        <span class="hljs-comment">// 获取鼠标相对于父元素的位置</span>
-        let parX = ev<span class="hljs-selector-class">.clientX</span> - pEle<span class="hljs-selector-class">.offsetLeft</span>
-        let parY = ev<span class="hljs-selector-class">.clientY</span> - pEle<span class="hljs-selector-class">.offsetTop</span>
-
-        <span class="hljs-comment">// 获取元素实际宽高</span>
-        let relX = oEle<span class="hljs-selector-class">.offsetWidth</span>
-        let relY = oEle<span class="hljs-selector-class">.offsetHeight</span>
-
-        <span class="hljs-comment">// 用鼠标的位置减去鼠标相对元素的位置，得到元素的位置</span>
-        let <span class="hljs-attribute">left</span> = parX - disX
-        let <span class="hljs-attribute">top</span> = parY - disY + change
-
-        <span class="hljs-comment">// 防止元素溢出</span>
-        <span class="hljs-keyword">if</span> (<span class="hljs-attribute">left</span> &lt; <span class="hljs-number">0</span>) {
-            <span class="hljs-attribute">left</span> = <span class="hljs-number">0</span>
-        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-attribute">left</span> + relX &gt; conX) {
-            <span class="hljs-attribute">left</span> = conX - relX
-        }
-        <span class="hljs-keyword">if</span> (<span class="hljs-attribute">top</span> &lt; <span class="hljs-number">0</span>) {
-            <span class="hljs-attribute">top</span> = <span class="hljs-number">0</span>
-        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-attribute">top</span> + relY &gt; conY) {
-            <span class="hljs-attribute">top</span> = conY - relY
-        }
-
-        <span class="hljs-comment">// 移动当前元素</span>
-        oEle<span class="hljs-selector-class">.style</span><span class="hljs-selector-class">.left</span> = <span class="hljs-attribute">left</span> + <span class="hljs-string">'px'</span>
-        oEle<span class="hljs-selector-class">.style</span><span class="hljs-selector-class">.top</span> = <span class="hljs-attribute">top</span> + <span class="hljs-string">'px'</span>
-    }
-
-    <span class="hljs-comment">// 拖到底部发生滚动时解决方案</span>
-    let scrollHandler = ev =&gt; {
-        setTimeout(() =&gt; {
-
-            let newTop = document<span class="hljs-selector-class">.documentElement</span><span class="hljs-selector-class">.scrollTop</span>
-            let evChange = newTop - oldTop
-            oldTop = newTop
-            <span class="hljs-comment">// 累计</span>
-            change += evChange
-
-            <span class="hljs-comment">// 根据滚动距离修改top</span>
-            oEle<span class="hljs-selector-class">.style</span><span class="hljs-selector-class">.top</span> = parseInt(oEle<span class="hljs-selector-class">.style</span>.<span class="hljs-attribute">top</span>) + evChange + <span class="hljs-string">'px'</span>
-        }, <span class="hljs-number">0</span>)
-    }
-
-    <span class="hljs-comment">// 移除监听</span>
-    let stopHandler = ev =&gt; {
-        document<span class="hljs-selector-class">.removeEventListener</span>(<span class="hljs-string">'mousemove'</span>, dragHandler)
-        document<span class="hljs-selector-class">.removeEventListener</span>(<span class="hljs-string">'mouseup'</span>, stopHandler)
-        document<span class="hljs-selector-class">.removeEventListener</span>(<span class="hljs-string">'scroll'</span>, scrollHandler)
-    }
-
-    <span class="hljs-comment">// 添加监听</span>
-    document<span class="hljs-selector-class">.addEventListener</span>(<span class="hljs-string">'mousemove'</span>, dragHandler)
-    document<span class="hljs-selector-class">.addEventListener</span>(<span class="hljs-string">'mouseup'</span>, stopHandler)
-    document<span class="hljs-selector-class">.addEventListener</span>(<span class="hljs-string">'scroll'</span>, scrollHandler)
-}
-
-<span class="hljs-comment">// App.vue</span>
-&lt;<span class="hljs-selector-tag">div</span> @mousedown=<span class="hljs-string">"util.drag"</span> /div&gt;
-<span class="hljs-comment">// directive.js</span>
-const directive = {
-    install: function(Vue, option) {
-        Vue<span class="hljs-selector-class">.directive</span>(<span class="hljs-string">'drag'</span>, {
-            inserted(el) {
-                let drag = e =&gt; {
-                    let oEle = e<span class="hljs-selector-class">.target</span> <span class="hljs-comment">// 获取目标元素</span>
-                    let pEle = e<span class="hljs-selector-class">.target</span><span class="hljs-selector-class">.parentNode</span> <span class="hljs-comment">// 获取容器</span>
-                    let oldTop = document<span class="hljs-selector-class">.documentElement</span><span class="hljs-selector-class">.scrollTop</span> <span class="hljs-comment">// 滚动之前的位置</span>
-                    let change = <span class="hljs-number">0</span> <span class="hljs-comment">// 滚动总变化量</span>
-                    <span class="hljs-comment">// 算出鼠标相对元素的位置</span>
-                    const disX = e<span class="hljs-selector-class">.clientX</span> - oEle<span class="hljs-selector-class">.offsetLeft</span> - pEle<span class="hljs-selector-class">.offsetLeft</span>
-                    const disY = e<span class="hljs-selector-class">.clientY</span> - oEle<span class="hljs-selector-class">.offsetTop</span> - pEle<span class="hljs-selector-class">.offsetTop</span>
-
-                    <span class="hljs-comment">// 定义拖动事件</span>
-                    let dragHandler = ev =&gt; {
-
-                        <span class="hljs-comment">// 获取可视区域宽高</span>
-                        <span class="hljs-comment">// const winX = this.getViewPortOffset().w</span>
-
-                        <span class="hljs-comment">// 获取容器元素宽高</span>
-                        let conX = pEle<span class="hljs-selector-class">.offsetWidth</span>
-                        let conY = pEle<span class="hljs-selector-class">.offsetHeight</span>
-
-                        <span class="hljs-comment">// 获取鼠标相对于父元素的位置</span>
-                        let parX = ev<span class="hljs-selector-class">.clientX</span> - pEle<span class="hljs-selector-class">.offsetLeft</span>
-                        let parY = ev<span class="hljs-selector-class">.clientY</span> - pEle<span class="hljs-selector-class">.offsetTop</span>
-
-                        <span class="hljs-comment">// 获取元素实际宽高</span>
-                        let relX = oEle<span class="hljs-selector-class">.offsetWidth</span>
-                        let relY = oEle<span class="hljs-selector-class">.offsetHeight</span>
-
-                        <span class="hljs-comment">// 用鼠标的位置减去鼠标相对元素的位置，得到元素的位置</span>
-                        let <span class="hljs-attribute">left</span> = parX - disX
-                        let <span class="hljs-attribute">top</span> = parY - disY + change
-
-                        <span class="hljs-comment">// 防止元素溢出</span>
-                        <span class="hljs-keyword">if</span> (<span class="hljs-attribute">left</span> &lt; <span class="hljs-number">0</span>) {
-                            <span class="hljs-attribute">left</span> = <span class="hljs-number">0</span>
-                        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-attribute">left</span> + relX &gt; conX) {
-                            <span class="hljs-attribute">left</span> = conX - relX
-                        }
-                        <span class="hljs-keyword">if</span> (<span class="hljs-attribute">top</span> &lt; <span class="hljs-number">0</span>) {
-                            <span class="hljs-attribute">top</span> = <span class="hljs-number">0</span>
-                        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-attribute">top</span> + relY &gt; conY) {
-                            <span class="hljs-attribute">top</span> = conY - relY
-                        }
-
-                        <span class="hljs-comment">// 移动当前元素</span>
-                        oEle<span class="hljs-selector-class">.style</span><span class="hljs-selector-class">.left</span> = <span class="hljs-attribute">left</span> + <span class="hljs-string">'px'</span>
-                        oEle<span class="hljs-selector-class">.style</span><span class="hljs-selector-class">.top</span> = <span class="hljs-attribute">top</span> + <span class="hljs-string">'px'</span>
-                    }
-
-                    <span class="hljs-comment">// 拖到底部发生滚动时解决方案</span>
-                    let scrollHandler = ev =&gt; {
-                        setTimeout(() =&gt; {
-
-                            let newTop = document<span class="hljs-selector-class">.documentElement</span><span class="hljs-selector-class">.scrollTop</span>
-                            let evChange = newTop - oldTop
-                            oldTop = newTop
-                            change += evChange
-
-                            <span class="hljs-comment">// oEle.style.left = parseInt(oEle.style.left) + change + 'px'</span>
-                            oEle<span class="hljs-selector-class">.style</span><span class="hljs-selector-class">.top</span> = parseInt(oEle<span class="hljs-selector-class">.style</span>.<span class="hljs-attribute">top</span>) + evChange + <span class="hljs-string">'px'</span>
-                        }, <span class="hljs-number">0</span>)
-                    }
-
-                    <span class="hljs-comment">// 移除监听</span>
-                    let stopHandler = ev =&gt; {
-                        document<span class="hljs-selector-class">.removeEventListener</span>(<span class="hljs-string">'mousemove'</span>, dragHandler)
-                        document<span class="hljs-selector-class">.removeEventListener</span>(<span class="hljs-string">'mouseup'</span>, stopHandler)
-                        document<span class="hljs-selector-class">.removeEventListener</span>(<span class="hljs-string">'scroll'</span>, scrollHandler)
-                    }
-
-                    <span class="hljs-comment">// 添加监听</span>
-                    document<span class="hljs-selector-class">.addEventListener</span>(<span class="hljs-string">'mousemove'</span>, dragHandler)
-                    document<span class="hljs-selector-class">.addEventListener</span>(<span class="hljs-string">'mouseup'</span>, stopHandler)
-                    document<span class="hljs-selector-class">.addEventListener</span>(<span class="hljs-string">'scroll'</span>, scrollHandler)
-                }
-                el<span class="hljs-selector-class">.addEventListener</span>(<span class="hljs-string">'mousedown'</span>, drag)
-            }
-        })
-    }
-}
-export default directive
-
-<span class="hljs-comment">// main.js</span>
-Vue<span class="hljs-selector-class">.use</span>(directive)</code></pre>
+            <a-row :gutter="24" :style="{background: '#ffffff'}" v-html="testTxt">
 
             </a-row>
         </div>
 
 <!--        <div style="position: absolute; width: 400px; height: 400px; background: #1890ff; left: 0; top: 0" @mousedown="drag">-->
 <!--        </div>-->
-        <div :style="{position: 'absolute', width: '400px', height: '400px', background: '#1890ff', left: 0, top: 0}" v-drag>
-        </div>
+<!--        <div :style="{position: 'absolute', width: '400px', height: '400px', background: '#1890ff', left: 0, top: 0}" v-drag>-->
+<!--        </div>-->
     </div>
 </template>
 
 <script>
 
 import HEditor from "@/components/HEditor"
+import factory from "@/test/factory"
+import utils from "@/common/util/utils"
 
 export default {
     name: "Home",
@@ -241,6 +76,8 @@ export default {
             content: '',
             url: 'static/test/personList.md',
             visiable: true,
+            testTxt: '',
+            token: '',
         }
     },
     computed: {
@@ -259,9 +96,15 @@ export default {
             // editor.create()
         }, 1000)
 
-        console.log('store==========', this.$store.state.common.avatar)
-        this.$store.commit('avatar', 'ssssssssssssssss')
-        console.log('store==========', this.$store.state.common.avatar)
+        console.log('token==========', this.$store.state.token)
+
+        factory.getTest().then(res => {
+            console.log('测试接口返回>>>', res)
+        })
+
+        factory.getTestTxt().then(res => {
+            this.testTxt = res
+        })
 
     },
     methods: {
@@ -363,6 +206,24 @@ export default {
                     h: document.documentElement.clientHeight,
                 }
             }
+        },
+        login() {
+            factory.getPublicKey().then(res => {
+                console.log(res)
+                let key = res.data.public_key
+                console.log('pubKey=========       ', key)
+                let kkk = res.data.private_key
+                console.log('pubKey=========       ', kkk)
+                const password = utils.encrypted(key, 'test@2')
+                const pppppppp = utils.decrypted(kkk, password)
+                console.log(password)
+                console.log(pppppppp)
+                // setTimeout(() => {
+                factory.getToken(password).then(res => {
+                    console.log(res)
+                })
+                // }, 3000)
+            })
         }
     }
 }

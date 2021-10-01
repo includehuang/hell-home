@@ -105,7 +105,7 @@ export function get({
             resolve(res)
         }).catch(err => {
             if (isErrorTip) {
-                vueObj.$message.success(vueObj.$t(errorStr))
+                vueObj.$message.error(vueObj.$t(errorStr))
             }
             reject(err)
         })
@@ -131,7 +131,7 @@ export function post({
             })
             .catch(err => {
                 if (isErrorTip) {
-                    vueObj.$message.success(vueObj.$t(errorStr))
+                    vueObj.$message.error(vueObj.$t(errorStr))
                 }
                 reject(err)
             })

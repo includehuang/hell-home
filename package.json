@@ -19,6 +19,7 @@
         "less-loader": "^4.1.0",
         "markdown-it-vue": "^1.1.6",
         "moment": "^2.29.1",
+        "node-rsa": "^1.1.1",
         "swiper": "^7.0.5",
         "vue": "^2.5.2",
         "vue-i18n": "^8.25.0",
