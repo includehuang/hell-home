@@ -1,18 +1,18 @@
 import Vue from "vue"
 import VueI18n from "vue-i18n"
-import zh_CN from "./common/zh_CN"
-import en_US from "./common/en_US"
-import zh_CN_message from "@/lang/common/zh_CN_message"
-import en_US_message from "@/lang/common/en_US_message"
+import en_US from "@/lang/lang/en_US"
+import en_US_message from "@/lang/lang/en_US_message"
+import zh_CN from "@/lang/lang/zh_CN"
+import zh_CN_message from "@/lang/lang/zh_CN_message"
+import zh_CN_pattern_validator from "@/lang/lang/zh_CN_pattern_validator"
+
+const _zh_CN = {...zh_CN, ...zh_CN_message, ...zh_CN_pattern_validator, }
+const _en_US = {...en_US, ...en_US_message, }
 
 Vue.use(VueI18n)
-
-const ZH_CN = {...zh_CN, ...zh_CN_message}
-const EN_US = {...en_US, ...en_US_message}
-
 const messages = {
-    'zh-CN': ZH_CN,
-    'en-US': EN_US,
+    'zh_CN': _zh_CN,
+    'en_US': _en_US,
 }
 
 const getLocale = function() { // 默认使用中文
@@ -20,9 +20,9 @@ const getLocale = function() { // 默认使用中文
         return navigator.language
     }else {
         switch (navigator.language) {
-            case 'en' : return 'en-US'
-            case 'zh' : return 'zh-CN'
-            default   : return 'zh-CN'
+            case 'zh' : return 'zh_CN'
+            case 'en' : return 'en_US'
+            default   : return 'zh_CN'
         }
     }
 }
