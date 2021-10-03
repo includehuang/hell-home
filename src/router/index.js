@@ -1,12 +1,42 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import BasicLayout from "@/layout/BasicLayout"
+import UserLayout from "@/layout/UserLayout"
 
 Vue.use(Router)
 
 const RouteView = {
     name: 'RouteView',
     render: h => h('router-view')
+}
+
+const UserRouter = {
+    path: '/user',
+    redirect: '/user/index',
+    component: UserLayout,
+    meta: {title: '/user', icon: 'home'},
+    children: [
+        {
+            path: '/user/index',
+            redirect: '/login',
+            component: RouteView,
+            meta: {title: 'menu.user', icon: 'home'},
+            children: [
+                {
+                    path: '/login',
+                    name: 'Login',
+                    component: () => import('@/page/user/Login'),
+                    meta: {title: 'menu.user.login', icon: 'home'}
+                },
+                {
+                    path: '/register',
+                    name: 'Register',
+                    component: () => import('@/page/user/register'),
+                    meta: {title: 'menu.user.register', icon: 'home'}
+                }
+            ]
+        }
+    ]
 }
 
 /* 基于BasicLayout的页面，默认显示在页面顶部导航栏，配置meta.disabled = true后隐藏 */
@@ -211,6 +241,7 @@ const SupplementRouter = {
 let router = new Router({
     routes: [
         BasicRouter,
+        UserRouter,
         SubfieldRouter,
         SupplementRouter,
         FunctionRouter
