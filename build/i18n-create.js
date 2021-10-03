@@ -183,5 +183,5 @@ const buildEnter = function (jsPath, langTypes = ['zh_CN', 'en_US']) {
 }
 
 makeDir(jsPath)
-jsonPathList.forEach(item => {buildLang(item, jsPath)})
+jsonPathList.forEach(item => buildLang(item, jsPath))
 buildEnter(jsPath, langTypeList)
