@@ -67,6 +67,7 @@
     "user.login.message-invalid-verification-code": "验证码错误",
     "user.login.tab-login-credentials": "用户名密码登录",
     "user.login.tab-login-mobile": "手机号登录",
+    "user.login.tab-login-mobile.no": "暂不支持手机号登录",
     "user.login.mobile.placeholder": "手机号",
     "user.login.mobile.verification-code.placeholder": "验证码",
     "user.login.remember-me": "自动登录",

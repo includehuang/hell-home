@@ -4,6 +4,8 @@
     "pattern.userName": "只能包含中文、字母、数字和字符@.-_",
     "pattern.userName.exceptCN": "只能包含字母、数字和字符@.-_",
     "pattern.userName.empty": "请输入用户名",
-    "pattern.password.empty": "请输入密码"
+    "pattern.password.empty": "请输入密码",
+    "pattern.phoneNumber": "请输入正确的手机号",
+    "pattern.phoneNumber.empty": "请输入手机号"
 
 }
