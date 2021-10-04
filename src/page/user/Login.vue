@@ -19,10 +19,7 @@
                             size="large"
                             type="text"
                             :placeholder="$t('user.login.userName.placeholder')"
-                            v-decorator="[
-                                'username',
-                                {rules: pattern.userName(), validateTrigger: 'change'}
-                            ]"
+                            v-decorator="['username', {rules: pattern.userName(), validateTrigger: 'change'}]"
                         >
                             <a-icon slot="prefix" type="user" :style="{ color: 'rgba(0,0,0,.25)' }"/>
                         </a-input>
@@ -32,10 +29,7 @@
                         <a-input-password
                             size="large"
                             :placeholder="$t('user.login.password.placeholder')"
-                            v-decorator="[
-                                'password',
-                                {rules: pattern.userPassword(), validateTrigger: 'blur'}
-                            ]"
+                            v-decorator="['password', {rules: pattern.userPassword(), validateTrigger: 'blur'}]"
                         >
                             <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
                         </a-input-password>
@@ -70,9 +64,9 @@
             </a-tabs>
 
             <a-form-item>
-                <a-checkbox disabled="true" v-decorator="['rememberMe', { valuePropName: 'checked' }]">{{ $t('user.login.remember-me') }}</a-checkbox>
+                <a-checkbox :disabled="true" v-decorator="['rememberMe', { valuePropName: 'checked' }]">{{ $t('user.login.remember-me') }}</a-checkbox>
                 <router-link
-                    :to="{ name: 'recover', params: { user: 'aaa'} }"
+                    :to="{ name: 'Login', params: { user: 'aaa'} }"
                     class="forge-password"
                     style="float: right;"
                 >{{ $t('user.login.forgot-password') }}</router-link>
