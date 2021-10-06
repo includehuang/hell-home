@@ -18,7 +18,12 @@ let store = new Vuex.Store({
     modules,
     getters,
     state: () => {
-        return {token: 'dsdsds'}
+        return {token: ''}
     },
+    mutations: {
+        token(state, value) {
+            state.token = value
+        }
+    }
 })
 export default store

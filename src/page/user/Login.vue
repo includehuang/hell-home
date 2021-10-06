@@ -102,7 +102,9 @@
 </template>
 
 <script>
+import factory from "@/page/user/factory"
 import pattern from "@/common/validator/pattern"
+import utils from "@/common/util/utils"
 
 // const pattern = () => import('@/common/validator/pattern')
 
@@ -140,7 +142,26 @@ export default {
          * 登录
          */
         handleSubmit(e) {
-
+            const formData = this.form.getFieldsValue()
+            const keyParams = {
+                name: formData.username,
+                time_stamp: new Date().getTime()
+            }
+            factory.getPublicKey(keyParams).then(res => {
+                const public_key = res.data.public_key
+                const password = utils.encrypted(public_key, formData.password)
+                const tokenParams = {
+                    name: formData.username,
+                    password: password
+                }
+                factory.getToken(tokenParams).then(res => {
+                    this.$store.commit('token', res.data.access_token)
+                    const params = this.$route.params
+                    if (!params.id) {
+                        this.$router.push({name: 'HomeIndex'})
+                    }
+                })
+            })
         },
         /**
          * 发送手机验证码

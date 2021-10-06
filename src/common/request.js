@@ -91,7 +91,7 @@ export function get({
     url = '/',
     params = undefined,
     isSuccessTip = false,
-    isErrorTip = false,
+    isErrorTip = true,
     successStr = 'request.success.tip',
     errorStr = 'request.error.tip'
 }) {
@@ -100,7 +100,20 @@ export function get({
             params: params
         }).then(res => {
             if (isSuccessTip) {
-                vueObj.$message.success(vueObj.$t(successStr))
+                switch (res.data.code) {
+                    case undefined : vueObj.$message.success(vueObj.$t(successStr)); break
+                    case 200 :
+                    case '200' :
+                    default : {
+                        if (res.data.data.tipMsg) {
+                            vueObj.$message.success(res.data.data.tipMsg); break
+                        }else if (res.data.data.errMsg) {
+                            vueObj.$message.error(res.data.data.errMsg); break
+                        }else {
+                            vueObj.$message.success(vueObj.$t(successStr)); break
+                        }
+                    }
+                }
             }
             resolve(res)
         }).catch(err => {
