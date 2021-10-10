@@ -26,6 +26,8 @@
     "menu.exception.not-find": "404",
     "menu.exception.server-error": "405",
 
+    "router.not.permission": "没有权限访问",
+
     "request.success.tip": "操作成功",
     "request.error.tip": "操作失败",
     "request.error.403": "登录过期，请重新登录",

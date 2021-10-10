@@ -3,12 +3,17 @@
         <div class="bg-mask"></div>
         <iframe class="special-effects" frameborder="no" src="/static/html/sakura.html"></iframe>
         <a-layout-header class="header-render" theme="#2F54EB">
-            <div class="logo"/>
+            <div class="logo">
+                <slot name="logo">
+                </slot>
+            </div>
             <h-menu :menus="menus" :selectedKeys="[$route.path]"/>
             <div class="header-extra">
-                <!--suppress SpellCheckingInspection -->
-                <iframe frameborder="no" marginwidth="0" marginheight="0" width=298 height=52
-                        src="//music.163.com/outchain/player?type=0&id=6852319897&auto=1&height=32"></iframe>
+                <slot name="extra">
+                    <!--suppress SpellCheckingInspection -->
+                    <iframe frameborder="no" marginwidth="0" marginheight="0" width=298 height=52
+                            src="//music.163.com/outchain/player?type=0&id=6852319897&auto=1&height=32"></iframe>
+                </slot>
             </div>
         </a-layout-header>
         <a-layout-content ref="content" :class="'content-render ' + codeStyle">

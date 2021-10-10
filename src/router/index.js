@@ -1,7 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import utils from "@/common/util/utils"
+import store from "@/store/store"
 import BasicLayout from "@/layout/BasicLayout"
 import UserLayout from "@/layout/UserLayout"
+import {message} from "ant-design-vue"
+import i18n from "@/lang/i18n"
 
 Vue.use(Router)
 
@@ -61,15 +65,15 @@ const BasicRouter = {
             ]
         },
         {
-            path: '/Teyvat',
-            redirect: '/Teyvat/index',
+            path: '/teyvat',
+            redirect: '/teyvat/index',
             component: RouteView,
             meta: {title: 'menu.teyvat', icon: 'home'},
             children: [
                 {
-                    path: '/Teyvat/index',
+                    path: '/teyvat/index',
                     name: 'TeyvatIndex',
-                    component: () => import('@/page/Teyvat/Teyvat'),
+                    component: () => import('@/page/teyvat/Teyvat'),
                     meta: {title: 'menu.teyvat.index', icon: 'home'},
                     beforeEnter: (to, from, next) => {
                         next(false)
@@ -79,71 +83,71 @@ const BasicRouter = {
             ]
         },
         {
-            path: '/TwoDimensions',
-            redirect: '/TwoDimensions/index',
+            path: '/twoDimensions',
+            redirect: '/twoDimensions/index',
             component: RouteView,
             meta: {title: 'menu.twoDimensions', icon: 'home'},
             children: [
                 {
-                    path: '/TwoDimensions/index',
+                    path: '/twoDimensions/index',
                     name: 'TwoDimensionsIndex',
-                    component: () => import('@/page/TwoDimensions/TwoDimensions'),
-                    meta: {title: 'menu.twoDimensions.index', icon: 'home'}
+                    component: () => import('@/page/twoDimensions/TwoDimensions'),
+                    meta: {title: 'menu.twoDimensions.index', icon: 'home', permission: ['admin']}
                 },
             ]
         },
         {
-            path: '/Eguo',
-            redirect: '/Eguo/index',
+            path: '/eguo',
+            redirect: '/eguo/index',
             component: RouteView,
             meta: {title: 'menu.eguo', icon: 'home'},
             children: [
                 {
-                    path: '/Eguo/index',
+                    path: '/eguo/index',
                     name: 'EguoIndex',
-                    component: () => import('@/page/Eguo/Eguo'),
+                    component: () => import('@/page/eguo/Eguo'),
                     meta: {title: 'menu.eguo.index', icon: 'home'}
                 },
             ]
         },
         {
-            path: '/Front',
-            redirect: '/Front/index',
+            path: '/front',
+            redirect: '/front/index',
             component: RouteView,
             meta: {title: 'menu.front', icon: 'home'},
             children: [
                 {
-                    path: '/Front/index',
+                    path: '/front/index',
                     name: 'HomeIndex',
-                    component: () => import('@/page/Front/Front'),
+                    component: () => import('@/page/front/Front'),
                     meta: {title: 'menu.front.index', icon: 'home'}
                 },
             ]
         },
         {
-            path: '/Study',
-            redirect: '/Study/index',
+            path: '/study',
+            redirect: '/study/index',
             component: RouteView,
             meta: {title: 'menu.study', icon: 'home'},
             children: [
                 {
-                    path: '/Study/index',
+                    path: '/study/index',
                     name: 'StudyIndex',
-                    component: () => import('@/page/Study/Study'),
+                    component: () => import('@/page/study/Study'),
                     meta: {title: 'menu.study.index', icon: 'home'}
                 },
             ]
         },
         {
-            path: '/Essay',
-            redirect: '/Essay/index',
+            path: '/essay',
+            redirect: '/essay/index',
             component: RouteView,
             meta: {title: 'menu.essay', icon: 'home'},
             children: [
                 {
-                    path: '/Essay/index',
+                    path: '/essay/index',
                     name: 'EssayIndex',
-                    component: () => import('@/page/Essay/Essay'),
+                    component: () => import('@/page/essay/Essay'),
                     meta: {title: 'menu.essay.index', icon: 'home'}
                 },
             ]
@@ -248,6 +252,21 @@ let router = new Router({
     ]
 })
 
+router.beforeEach((to, from, next) => {
+    const permission = to.meta.permission
+    if (!permission || !permission.length || permission.includes('default')) {
+        next()
+    }else if (permission.includes('forbidden') || !utils.isHaveSameElement(store.state.permission, permission)) {
+        message.error(i18n.t('router.not.permission'))
+        next(false)
+        if (from.path === '/') { // 没有from（例如浏览器直接输入URl）默认返回首页
+            next({name: 'HomeIndex'})
+        }
+    }else {
+        next()
+    }
+})
+
 // 将路由列表转换为导航列表的方法
 function trans(router = []) {
     let temp = []
@@ -256,14 +275,14 @@ function trans(router = []) {
             if (item.children) {
                 temp.push({
                     title: item.meta.title,
-                    key: item.path,
+                    key: item.name,
                     icon: item.meta.icon,
                     children: trans(item.children)
                 })
             } else {
                 temp.push({
                     title: item.meta.title,
-                    key: item.path,
+                    key: item.name,
                     icon: item.meta.icon,
                 })
             }

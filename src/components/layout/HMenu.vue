@@ -210,7 +210,7 @@ export default {
             if (this.$listeners.click) {
                 this.$emit('click', option)
             }else {
-                this.$router.push(option.key)
+                this.$router.push({name: option.key})
             }
         },
     }

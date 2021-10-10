@@ -34,7 +34,7 @@
 
 <script>
 
-import factory from "@/page/Eguo/factory"
+import factory from "@/page/eguo/factory"
 import HCarousel from "@/components/layout/HCarousel"
 
 export default {

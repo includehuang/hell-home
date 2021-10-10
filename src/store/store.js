@@ -18,11 +18,18 @@ let store = new Vuex.Store({
     modules,
     getters,
     state: () => {
-        return {token: ''}
+        return {
+            token: null,
+            login: false,
+            permission: ['default'],
+        }
     },
     mutations: {
         token(state, value) {
             state.token = value
+        },
+        permission(state, value) {
+            state.permission = value
         }
     }
 })
