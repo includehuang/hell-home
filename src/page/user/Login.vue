@@ -5,7 +5,6 @@
             class="user-layout-login"
             ref="formLogin"
             :form="form"
-            @submit="handleSubmit"
         >
             <a-tabs
                 :activeKey="customActiveKey"
@@ -80,6 +79,7 @@
                     class="login-button"
                     :loading="state.loginBtn"
                     :disabled="state.loginBtn"
+                    @click="handleSubmit"
                 >{{ $t('user.login.login') }}</a-button>
             </a-form-item>
 
@@ -147,6 +147,7 @@ export default {
                 name: formData.username,
                 time_stamp: new Date().getTime()
             }
+            console.log(formData)
             factory.getPublicKey(keyParams).then(res => {
                 const public_key = res.data.public_key
                 const password = utils.encrypted(public_key, formData.password)
@@ -161,6 +162,8 @@ export default {
                         this.$router.push({name: 'HomeIndex'})
                     }
                 })
+            }).catch(err => {
+                console.log(err)
             })
         },
         /**

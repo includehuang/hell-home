@@ -11,9 +11,9 @@
 import Vue from "vue"
 import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
 import BilibiliPlayer from "@/components/player/BilibiliPlayer"
+import request from "@/common/request"
 import 'moment/locale/zh-cn'
 
-const request = () => import("@/common/request")
 export default {
     name: 'App',
     components: {BilibiliPlayer},

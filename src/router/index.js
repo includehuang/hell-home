@@ -68,13 +68,13 @@ const BasicRouter = {
             path: '/teyvat',
             redirect: '/teyvat/index',
             component: RouteView,
-            meta: {title: 'menu.teyvat', icon: 'home'},
+            meta: {title: 'menu.teyvat', icon: 'switcher'},
             children: [
                 {
                     path: '/teyvat/index',
                     name: 'TeyvatIndex',
                     component: () => import('@/page/teyvat/Teyvat'),
-                    meta: {title: 'menu.teyvat.index', icon: 'home'},
+                    meta: {title: 'menu.teyvat.index', icon: 'switcher'},
                     beforeEnter: (to, from, next) => {
                         next(false)
                         window.open('https://bbs.mihoyo.com/ys/')
@@ -86,13 +86,13 @@ const BasicRouter = {
             path: '/twoDimensions',
             redirect: '/twoDimensions/index',
             component: RouteView,
-            meta: {title: 'menu.twoDimensions', icon: 'home'},
+            meta: {title: 'menu.twoDimensions', icon: 'switcher'},
             children: [
                 {
                     path: '/twoDimensions/index',
                     name: 'TwoDimensionsIndex',
                     component: () => import('@/page/twoDimensions/TwoDimensions'),
-                    meta: {title: 'menu.twoDimensions.index', icon: 'home', permission: ['admin']}
+                    meta: {title: 'menu.twoDimensions.index', icon: 'switcher', permission: []}
                 },
             ]
         },
@@ -100,13 +100,13 @@ const BasicRouter = {
             path: '/eguo',
             redirect: '/eguo/index',
             component: RouteView,
-            meta: {title: 'menu.eguo', icon: 'home'},
+            meta: {title: 'menu.eguo', icon: 'eye'},
             children: [
                 {
                     path: '/eguo/index',
                     name: 'EguoIndex',
                     component: () => import('@/page/eguo/Eguo'),
-                    meta: {title: 'menu.eguo.index', icon: 'home'}
+                    meta: {title: 'menu.eguo.index', icon: 'eye'}
                 },
             ]
         },
@@ -114,13 +114,13 @@ const BasicRouter = {
             path: '/front',
             redirect: '/front/index',
             component: RouteView,
-            meta: {title: 'menu.front', icon: 'home'},
+            meta: {title: 'menu.front', icon: 'switcher'},
             children: [
                 {
                     path: '/front/index',
                     name: 'HomeIndex',
                     component: () => import('@/page/front/Front'),
-                    meta: {title: 'menu.front.index', icon: 'home'}
+                    meta: {title: 'menu.front.index', icon: 'switcher'}
                 },
             ]
         },
@@ -128,13 +128,13 @@ const BasicRouter = {
             path: '/study',
             redirect: '/study/index',
             component: RouteView,
-            meta: {title: 'menu.study', icon: 'home'},
+            meta: {title: 'menu.study', icon: 'book'},
             children: [
                 {
                     path: '/study/index',
                     name: 'StudyIndex',
                     component: () => import('@/page/study/Study'),
-                    meta: {title: 'menu.study.index', icon: 'home'}
+                    meta: {title: 'menu.study.index', icon: 'book'}
                 },
             ]
         },
@@ -142,13 +142,27 @@ const BasicRouter = {
             path: '/essay',
             redirect: '/essay/index',
             component: RouteView,
-            meta: {title: 'menu.essay', icon: 'home'},
+            meta: {title: 'menu.essay', icon: 'read'},
             children: [
                 {
                     path: '/essay/index',
                     name: 'EssayIndex',
                     component: () => import('@/page/essay/Essay'),
-                    meta: {title: 'menu.essay.index', icon: 'home'}
+                    meta: {title: 'menu.essay.index', icon: 'read'}
+                },
+            ]
+        },
+        {
+            path: '/personal',
+            redirect: '/personal/index',
+            component: RouteView,
+            meta: {title: 'menu.personal', icon: 'user'},
+            children: [
+                {
+                    path: '/personal/index',
+                    name: 'PersonalIndex',
+                    component: () => import('@/page/personal/Personal'),
+                    meta: {title: 'menu.personal.index', icon: 'user'},
                 },
             ]
         },
@@ -272,7 +286,7 @@ function trans(router = []) {
     let temp = []
     router.forEach(item => {
         if (!item.meta.hidden) {
-            if (item.children) {
+            if (item.children && !item.meta.NoChildren) {
                 temp.push({
                     title: item.meta.title,
                     key: item.name,
