@@ -7,7 +7,7 @@
                 <slot name="logo">
                 </slot>
             </div>
-            <h-menu :menus="menus" :selectedKeys="[$route.path]"/>
+            <h-menu :menus="menus" :default-selected-keys="['Home']" :selectedKeys="[$route.name]"/>
             <div class="header-extra">
                 <slot name="extra">
                     <!--suppress SpellCheckingInspection -->

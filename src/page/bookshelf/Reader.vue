@@ -4,94 +4,18 @@
         <a-layout-sider :theme="theme" v-model="collapsed" :trigger="null" collapsible class="book-side" :style="sideStyle">
             <div class="move-right" @mousedown="drag" :style="{cursor}">
                 <div class="list-logo" />
-                <a-menu
+                <h-menus
                     :default-selected-keys="['1']"
-                    :default-open-keys="['sub1']"
-                    mode="inline"
+                    :default-open-keys="['2']"
+                    :mode="'inline'"
                     :theme="theme"
                     :inline-collapsed="collapsed"
                     class="over-height"
-                >
-                    <a-menu-item key="1">
-                        <a-icon type="pie-chart"/>
-                        <span>Option 1</span>
-                    </a-menu-item>
-                    <a-menu-item key="2">
-                        <a-icon type="desktop"/>
-                        <span>Option 2</span>
-                    </a-menu-item>
-                    <a-menu-item key="3">
-                        <a-icon type="inbox"/>
-                        <span>Option 3</span>
-                    </a-menu-item>
-                    <a-sub-menu key="sub1">
-                        <span slot="title"><a-icon type="mail"/><span>Navigation One</span></span>
-                        <a-menu-item key="5">
-                            Option 5
-                        </a-menu-item>
-                        <a-menu-item key="6">
-                            Option 6
-                        </a-menu-item>
-                        <a-menu-item key="7">
-                            Option 7
-                        </a-menu-item>
-                        <a-menu-item key="8">
-                            Option 8
-                        </a-menu-item>
-                    </a-sub-menu>
-                    <a-sub-menu key="sub2">
-                        <span slot="title"><a-icon type="appstore"/><span>Navigation Two</span></span>
-                        <a-menu-item key="9">
-                            Option 9
-                        </a-menu-item>
-                        <a-menu-item key="10">
-                            Option 10
-                        </a-menu-item>
-                        <a-sub-menu key="sub3" title="Submenu">
-                            <a-menu-item key="11">
-                                Option 11
-                            </a-menu-item>
-                            <a-menu-item key="12">
-                                Option 12
-                            </a-menu-item>
-                            <a-sub-menu title="Submenu">
-                                <a-menu-item>
-                                    Option 11
-                                </a-menu-item>
-                                <a-menu-item>
-                                    Option 12
-                                </a-menu-item>
-                                <a-sub-menu title="Submenu">
-                                    <a-menu-item>
-                                        Option 11
-                                    </a-menu-item>
-                                    <a-menu-item>
-                                        Option 12
-                                    </a-menu-item>
-                                    <a-sub-menu title="Submenu">
-                                        <a-menu-item>
-                                            Option 11
-                                        </a-menu-item>
-                                        <a-menu-item>
-                                            Option 12
-                                        </a-menu-item>
-                                        <a-sub-menu title="Submenu">
-                                            <a-menu-item>
-                                                Option 11
-                                            </a-menu-item>
-                                            <a-menu-item>
-                                                Option 12
-                                            </a-menu-item>
-                                        </a-sub-menu>
-                                    </a-sub-menu>
-                                </a-sub-menu>
-                            </a-sub-menu>
-                        </a-sub-menu>
-                    </a-sub-menu>
-                </a-menu>
+                    :list="list.data"
+                />
             </div>
         </a-layout-sider>
-        <a-layout>
+        <a-layout class="book-content">
             <a-layout-header style="background: #fff; padding: 0">
                 <!--suppress JSUndeclaredVariable -->
                 <a-icon
@@ -101,20 +25,141 @@
                 />
             </a-layout-header>
             <a-layout-content
-                :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+                :style="{ margin: '24px 16px 0 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+                class="book-main"
             >
-                Content
+                <test-text/>
             </a-layout-content>
         </a-layout>
     </a-layout>
 </template>
 
 <script>
+
+import HMenus from "@/components/layout/HMenus"
+import TestText from "@/page/bookshelf/TestText"
+
+const list = {
+    data: [
+        {
+            id: '000',
+            type: 'file',
+            title: '例子',
+            key: '000',
+        },
+        {
+            id: '001',
+            type: 'folder',
+            title: '魔法师生存守则',
+            key: '001',
+            children: [
+                {
+                    id: '001$001',
+                    type: 'file',
+                    title: '第一章：魔法阵',
+                    key: '001$001',
+                },
+                {
+                    id: '001$002',
+                    type: 'file',
+                    title: '第二章：穿越了',
+                    key: '001$002',
+                },
+                {
+                    id: '001$003',
+                    type: 'file',
+                    title: '第三章：抱大腿',
+                    key: '001$003',
+                },
+            ]
+        },
+        {
+            id: '002',
+            type: 'file',
+            title: '首页',
+            key: '002',
+        },
+        {
+            id: '003',
+            type: 'file',
+            title: '前言',
+            key: '003',
+        },
+        {
+            id: '004',
+            type: 'folder',
+            title: '人物介绍',
+            key: '004',
+            children: [
+                {
+                    id: '004$001',
+                    type: 'folder',
+                    title: '清岛人物介绍',
+                    key: '004$001',
+                    children: [
+                        {
+                            id: '004$001$001',
+                            type: 'folder',
+                            title: '天心学院人物介绍',
+                            key: '004$001$001',
+                            children: [
+                                {
+                                    id: '004$001$001$001',
+                                    type: 'file',
+                                    title: '祎果',
+                                    key: '004$001$001$001',
+                                },
+                                {
+                                    id: '004$001$001$002',
+                                    type: 'file',
+                                    title: '琋玥',
+                                    key: '004$001$001$002',
+                                },
+                                {
+                                    id: '004$001$001$003',
+                                    type: 'file',
+                                    title: '卿山',
+                                    key: '004$001$001$003',
+                                },
+                                {
+                                    id: '004$001$001$004',
+                                    type: 'file',
+                                    title: '归风',
+                                    key: '004$001$001$004',
+                                },
+                            ]
+                        },
+                        {
+                            id: '004$001$002',
+                            type: 'folder',
+                            title: '万民堂人物介绍',
+                            key: '004$001$002',
+                            children: []
+                        }
+                    ]
+                },
+                {
+                    id: '004$002',
+                    type: 'folder',
+                    title: '水月洞天人物介绍',
+                    key: '004$002',
+                    children: []
+                }
+            ]
+        },
+    ]
+}
+
 export default {
     name: "Reader",
+    components: {
+        TestText,
+        HMenus
+    },
     props: {},
     data() {
         return {
+            list,
             collapsed: false,
             theme: 'light', // 'light' | 'dark'
             sideWidth: 200,
@@ -217,7 +262,6 @@ export default {
     .book-side {
         height: 100%;
         padding: 0;
-        width: 400px;
 
         .move-right {
             position: absolute;
@@ -253,6 +297,33 @@ export default {
             }
         }
 
+    }
+
+    .book-content {
+        height: 100%;
+        padding: 0;
+
+        .book-main {
+            overflow: auto;
+        }
+
+        /*滚动条整体样式*/
+        ::-webkit-scrollbar {
+            width : 10px;  /*高宽分别对应横竖滚动条的尺寸*/
+            height: 1px;
+        }
+        /*滚动条里面小方块*/
+        ::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background   : rgba(53, 53, 53, 0.2);
+        }
+        /*滚动条里面轨道*/
+        ::-webkit-scrollbar-track {
+            box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background   : #ededed;
+        }
     }
 
     .trigger {
