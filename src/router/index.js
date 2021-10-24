@@ -50,11 +50,13 @@ const BasicRouter = {
     component: BasicLayout,
     meta: {title: '/', icon: 'home'},
     children: [
+        // 首页
         {
             path: '/home',
             redirect: '/home/index',
+            name: 'Home',
             component: RouteView,
-            meta: {title: 'menu.home', icon: 'home'},
+            meta: {title: 'menu.home', icon: 'home', NoChildren: true},
             children: [
                 {
                     path: '/home/index',
@@ -64,11 +66,13 @@ const BasicRouter = {
                 },
             ]
         },
+        // 提瓦特
         {
             path: '/teyvat',
             redirect: '/teyvat/index',
+            name: 'Teyvat',
             component: RouteView,
-            meta: {title: 'menu.teyvat', icon: 'switcher'},
+            meta: {title: 'menu.teyvat', icon: 'switcher', NoChildren: true, hidden: true},
             children: [
                 {
                     path: '/teyvat/index',
@@ -82,11 +86,13 @@ const BasicRouter = {
                 },
             ]
         },
+        // 二次元
         {
             path: '/twoDimensions',
             redirect: '/twoDimensions/index',
+            name: 'TwoDimensionsI',
             component: RouteView,
-            meta: {title: 'menu.twoDimensions', icon: 'switcher'},
+            meta: {title: 'menu.twoDimensions', icon: 'switcher', NoChildren: true, hidden: true},
             children: [
                 {
                     path: '/twoDimensions/index',
@@ -96,11 +102,13 @@ const BasicRouter = {
                 },
             ]
         },
+        // 祎果
         {
             path: '/eguo',
             redirect: '/eguo/index',
+            name: 'Eguo',
             component: RouteView,
-            meta: {title: 'menu.eguo', icon: 'eye'},
+            meta: {title: 'menu.eguo', icon: 'eye', NoChildren: true},
             children: [
                 {
                     path: '/eguo/index',
@@ -110,25 +118,28 @@ const BasicRouter = {
                 },
             ]
         },
+        // 前端
         {
             path: '/front',
             redirect: '/front/index',
+            name: 'Front',
             component: RouteView,
-            meta: {title: 'menu.front', icon: 'switcher'},
+            meta: {title: 'menu.front', icon: 'switcher', NoChildren: true},
             children: [
                 {
                     path: '/front/index',
-                    name: 'HomeIndex',
+                    name: 'FrontIndex',
                     component: () => import('@/page/front/Front'),
                     meta: {title: 'menu.front.index', icon: 'switcher'}
                 },
             ]
         },
+        // 学习
         {
             path: '/study',
             redirect: '/study/index',
             component: RouteView,
-            meta: {title: 'menu.study', icon: 'book'},
+            meta: {title: 'menu.study', icon: 'book', NoChildren: true},
             children: [
                 {
                     path: '/study/index',
@@ -138,11 +149,13 @@ const BasicRouter = {
                 },
             ]
         },
+        // 随笔
         {
             path: '/essay',
             redirect: '/essay/index',
+            name: 'Essay',
             component: RouteView,
-            meta: {title: 'menu.essay', icon: 'read'},
+            meta: {title: 'menu.essay', icon: 'read', NoChildren: true, hidden: true},
             children: [
                 {
                     path: '/essay/index',
@@ -152,6 +165,29 @@ const BasicRouter = {
                 },
             ]
         },
+        // 书架
+        {
+            path: '/bookshelf',
+            redirect: '/bookshelf/index',
+            name: 'Bookshelf',
+            component: RouteView,
+            meta: {title: 'menu.bookshelf', icon: 'read', NoChildren: true},
+            children: [
+                {
+                    path: '/bookshelf/index',
+                    name: 'BookshelfIndex',
+                    component: () => import('@/page/bookshelf/Bookshelf'),
+                    meta: {title: 'menu.bookshelf.index', icon: 'read'}
+                },
+                {
+                    path: '/bookshelf/reader',
+                    name: 'ReaderIndex',
+                    component: () => import('@/page/bookshelf/Reader'),
+                    meta: {title: 'menu.reader.index', icon: 'read'}
+                },
+            ]
+        },
+        // 个人
         {
             path: '/personal',
             redirect: '/personal/index',

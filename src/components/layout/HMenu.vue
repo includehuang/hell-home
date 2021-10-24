@@ -5,6 +5,7 @@
         :theme="theme"
         :class="innerClass"
         :selectedKeys="selectedKeys"
+        v-model="model"
         @click="onClickFun"
     >
         <template v-for="item in menus">
@@ -192,6 +193,11 @@ export default {
             type: Function,
             default: null
         },
+    },
+    data() {
+        return {
+            model: ''
+        }
     },
     created() {
         if (this.$props.langRender) {
