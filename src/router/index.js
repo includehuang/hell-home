@@ -139,6 +139,7 @@ const BasicRouter = {
             path: '/study',
             redirect: '/study/index',
             component: RouteView,
+            name: 'Study',
             meta: {title: 'menu.study', icon: 'book', NoChildren: true},
             children: [
                 {

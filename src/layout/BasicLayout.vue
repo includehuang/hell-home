@@ -17,21 +17,24 @@
             </div>
         </a-layout-header>
         <a-layout-content ref="content" :class="'content-render ' + codeStyle">
-            <span>
-                请选择代码高亮样式：
-            </span>
-            <a-select default-value="idea" :allowClear="true" :showSearch="true" style="width: 200px" @change="changeCodeLight">
-                <template v-for="item in codeLight">
-                    <a-select-option :value="item.split('.')[0]" :key="item.split('.')[0]">
-                        {{item.split('.')[0]}}
-                    </a-select-option>
-                </template>
-            </a-select>
+            <!--template>
+                <span>
+                    请选择代码高亮样式：
+                </span>
+                <a-select default-value="idea" :allowClear="true" :showSearch="true" style="width: 200px"
+                          @change="changeCodeLight">
+                    <template v-for="item in codeLight">
+                        <a-select-option :value="item.split('.')[0]" :key="item.split('.')[0]">
+                            {{ item.split('.')[0] }}
+                        </a-select-option>
+                    </template>
+                </a-select>
+            </template-->
             <router-view/>
         </a-layout-content>
         <a-layout-footer class='footer-render'>
         </a-layout-footer>
-        <waifu ref="live2d" :settings="LIVE2D_SETTINGS" :style="{display: live2dDisplay}"/>
+<!--        <waifu ref="live2d" :settings="LIVE2D_SETTINGS" :style="{display: live2dDisplay}"/>-->
     </a-layout>
 </template>
 

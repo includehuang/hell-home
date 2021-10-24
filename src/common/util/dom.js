@@ -1,5 +1,5 @@
 // noinspection JSUnusedGlobalSymbols
-let Dom = {
+const Dom = {
     /**
      * 根据元素实际宽度，设置对应的高度
      * @param element dom节点
@@ -107,5 +107,16 @@ let Dom = {
         document.addEventListener('mouseup', stopHandler)
         document.addEventListener('scroll', scrollHandler)
     },
+    /**
+     * 清除选区方法
+     */
+    clearSelection() {
+        const fun = "getSelection" in window ? function(){
+            window.getSelection().removeAllRanges()
+        } : function(){
+            document.selection.empty()
+        }
+        fun()
+    }
 }
 export default Dom
