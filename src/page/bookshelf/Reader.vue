@@ -2,7 +2,7 @@
     <a-layout id="book-reader">
         <!-- 使用style而不是size是为了更快的响应速度 -->
         <a-layout-sider :theme="theme" v-model="collapsed" :trigger="null" collapsible class="book-side" :style="sideStyle">
-            <div class="move-right" @mousedown="drag">
+            <div class="move-right" @mousedown="drag" :style="{cursor}">
                 <div class="list-logo" />
                 <a-menu
                     :default-selected-keys="['1']"
@@ -93,10 +93,11 @@
         </a-layout-sider>
         <a-layout>
             <a-layout-header style="background: #fff; padding: 0">
+                <!--suppress JSUndeclaredVariable -->
                 <a-icon
                     class="trigger"
                     :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-                    @click="() => (collapsed = !collapsed)"
+                    @click="menuFold"
                 />
             </a-layout-header>
             <a-layout-content
@@ -115,8 +116,9 @@ export default {
     data() {
         return {
             collapsed: false,
-            theme: 'light', // light | dark
+            theme: 'light', // 'light' | 'dark'
             sideWidth: 200,
+            cursor: 'e-resize', // 'default' | 'e-resize'
         }
     },
     computed: {
@@ -133,6 +135,9 @@ export default {
     },
     methods: {
         drag(e) {
+            if (this.collapsed) {
+                return false
+            }
             e.stopPropagation()
             // 清除选区
             const clearSelection = "getSelection" in window ? function(){
@@ -190,6 +195,11 @@ export default {
             document.addEventListener('mousemove', dragHandler)
             document.addEventListener('mouseup', stopHandler)
 
+        },
+        menuFold() {
+            this.collapsed = ! this.collapsed
+            this.sideWidth = this.collapsed ? 80 : 200
+            this.cursor = this.collapsed ? 'default' : 'e-resize'
         }
     }
 }
@@ -216,7 +226,6 @@ export default {
             padding-right: 16px;
             height: 100%;
             margin: 0;
-            cursor: e-resize;
             //border-right: 4px solid #e8e8e8;
 
             .list-logo {
