@@ -5,6 +5,7 @@
         :mode="mode"
         :theme="theme"
         :inline-collapsed="inlineCollapsed"
+        @click="onClick"
     >
         <template v-for="item in list">
 <!--            <a-menu-item v-if="!item.children" :key="item.key">-->
@@ -134,5 +135,12 @@ export default {
             collapsed: false,
         }
     },
+    methods: {
+        onClick(option) {
+            if (this.$listeners.click) {
+                this.$emit('click', option)
+            }
+        },
+    }
 }
 </script>

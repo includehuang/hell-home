@@ -147,7 +147,6 @@ export default {
                 name: formData.username,
                 time_stamp: new Date().getTime()
             }
-            console.log(formData)
             factory.getPublicKey(keyParams).then(res => {
                 const public_key = res.data.public_key
                 const password = utils.encrypted(public_key, formData.password)
@@ -163,7 +162,8 @@ export default {
                     }
                 })
             }).catch(err => {
-                console.log(err)
+                this.$message.error('')
+                // console.log(err)
             })
         },
         /**

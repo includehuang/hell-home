@@ -5,13 +5,14 @@
             <div class="move-right" @mousedown="drag" :style="{cursor}">
                 <div class="list-logo" />
                 <h-menus
-                    :default-selected-keys="['1']"
-                    :default-open-keys="['2']"
+                    :default-selected-keys="['000$001']"
+                    :default-open-keys="['000']"
                     :mode="'inline'"
                     :theme="theme"
                     :inline-collapsed="collapsed"
                     class="over-height"
                     :list="list.data"
+                    @click="onMenusClick"
                 />
             </div>
         </a-layout-sider>
@@ -28,7 +29,8 @@
                 :style="{ margin: '24px 16px 0 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
                 class="book-main"
             >
-                <test-text/>
+                <div v-html="mainText" v-if="mainText"/>
+                <a-empty v-else/>
             </a-layout-content>
         </a-layout>
     </a-layout>
@@ -37,133 +39,137 @@
 <script>
 
 import HMenus from "@/components/layout/HMenus"
-import TestText from "@/page/bookshelf/TestText"
+import factory from "@/page/bookshelf/factory"
 
-const list = {
-    data: [
-        {
-            id: '000',
-            type: 'file',
-            title: '例子',
-            key: '000',
-        },
-        {
-            id: '001',
-            type: 'folder',
-            title: '魔法师生存守则',
-            key: '001',
-            children: [
-                {
-                    id: '001$001',
-                    type: 'file',
-                    title: '第一章：魔法阵',
-                    key: '001$001',
-                },
-                {
-                    id: '001$002',
-                    type: 'file',
-                    title: '第二章：穿越了',
-                    key: '001$002',
-                },
-                {
-                    id: '001$003',
-                    type: 'file',
-                    title: '第三章：抱大腿',
-                    key: '001$003',
-                },
-            ]
-        },
-        {
-            id: '002',
-            type: 'file',
-            title: '首页',
-            key: '002',
-        },
-        {
-            id: '003',
-            type: 'file',
-            title: '前言',
-            key: '003',
-        },
-        {
-            id: '004',
-            type: 'folder',
-            title: '人物介绍',
-            key: '004',
-            children: [
-                {
-                    id: '004$001',
-                    type: 'folder',
-                    title: '清岛人物介绍',
-                    key: '004$001',
-                    children: [
-                        {
-                            id: '004$001$001',
-                            type: 'folder',
-                            title: '天心学院人物介绍',
-                            key: '004$001$001',
-                            children: [
-                                {
-                                    id: '004$001$001$001',
-                                    type: 'file',
-                                    title: '祎果',
-                                    key: '004$001$001$001',
-                                },
-                                {
-                                    id: '004$001$001$002',
-                                    type: 'file',
-                                    title: '琋玥',
-                                    key: '004$001$001$002',
-                                },
-                                {
-                                    id: '004$001$001$003',
-                                    type: 'file',
-                                    title: '卿山',
-                                    key: '004$001$001$003',
-                                },
-                                {
-                                    id: '004$001$001$004',
-                                    type: 'file',
-                                    title: '归风',
-                                    key: '004$001$001$004',
-                                },
-                            ]
-                        },
-                        {
-                            id: '004$001$002',
-                            type: 'folder',
-                            title: '万民堂人物介绍',
-                            key: '004$001$002',
-                            children: []
-                        }
-                    ]
-                },
-                {
-                    id: '004$002',
-                    type: 'folder',
-                    title: '水月洞天人物介绍',
-                    key: '004$002',
-                    children: []
-                }
-            ]
-        },
-    ]
-}
+// eslint-disable-next-line no-unused-vars
+// const LIST = {
+//     data: [
+//         {
+//             id: '000',
+//             type: 'file',
+//             title: '例子',
+//             key: '000',
+//         },
+//         {
+//             id: '001',
+//             type: 'folder',
+//             title: '魔法师生存守则',
+//             key: '001',
+//             children: [
+//                 {
+//                     id: '001$001',
+//                     type: 'file',
+//                     title: '第一章：魔法阵',
+//                     key: '001$001',
+//                 },
+//                 {
+//                     id: '001$002',
+//                     type: 'file',
+//                     title: '第二章：穿越了',
+//                     key: '001$002',
+//                 },
+//                 {
+//                     id: '001$003',
+//                     type: 'file',
+//                     title: '第三章：抱大腿',
+//                     key: '001$003',
+//                 },
+//             ]
+//         },
+//         {
+//             id: '002',
+//             type: 'file',
+//             title: '首页',
+//             key: '002',
+//         },
+//         {
+//             id: '003',
+//             type: 'file',
+//             title: '前言',
+//             key: '003',
+//         },
+//         {
+//             id: '004',
+//             type: 'folder',
+//             title: '人物介绍',
+//             key: '004',
+//             children: [
+//                 {
+//                     id: '004$001',
+//                     type: 'folder',
+//                     title: '清岛人物介绍',
+//                     key: '004$001',
+//                     children: [
+//                         {
+//                             id: '004$001$001',
+//                             type: 'folder',
+//                             title: '天心学院人物介绍',
+//                             key: '004$001$001',
+//                             children: [
+//                                 {
+//                                     id: '004$001$001$001',
+//                                     type: 'file',
+//                                     title: '祎果',
+//                                     key: '004$001$001$001',
+//                                 },
+//                                 {
+//                                     id: '004$001$001$002',
+//                                     type: 'file',
+//                                     title: '琋玥',
+//                                     key: '004$001$001$002',
+//                                 },
+//                                 {
+//                                     id: '004$001$001$003',
+//                                     type: 'file',
+//                                     title: '卿山',
+//                                     key: '004$001$001$003',
+//                                 },
+//                                 {
+//                                     id: '004$001$001$004',
+//                                     type: 'file',
+//                                     title: '归风',
+//                                     key: '004$001$001$004',
+//                                 },
+//                             ]
+//                         },
+//                         {
+//                             id: '004$001$002',
+//                             type: 'folder',
+//                             title: '万民堂人物介绍',
+//                             key: '004$001$002',
+//                             children: []
+//                         }
+//                     ]
+//                 },
+//                 {
+//                     id: '004$002',
+//                     type: 'folder',
+//                     title: '水月洞天人物介绍',
+//                     key: '004$002',
+//                     children: []
+//                 }
+//             ]
+//         },
+//     ]
+// }
 
 export default {
     name: "Reader",
     components: {
-        TestText,
         HMenus
     },
     props: {},
     data() {
         return {
-            list,
+            list: null,
             collapsed: false,
             theme: 'light', // 'light' | 'dark'
             sideWidth: 200,
             cursor: 'e-resize', // 'default' | 'e-resize'
+            mainText: '',
+            bookUser: 'vision',
+            bookName: '魔法师生存守则',
+            bookChapter: '000$001'
         }
     },
     computed: {
@@ -177,8 +183,14 @@ export default {
         }
     },
     mounted() {
+        this.getBook()
     },
     methods: {
+        /**
+         * 可伸缩侧边栏
+         * @param e
+         * @returns {boolean}
+         */
         drag(e) {
             if (this.collapsed) {
                 return false
@@ -241,10 +253,48 @@ export default {
             document.addEventListener('mouseup', stopHandler)
 
         },
+        /**
+         * 最小化侧边栏
+         */
         menuFold() {
             this.collapsed = ! this.collapsed
             this.sideWidth = this.collapsed ? 80 : 200
             this.cursor = this.collapsed ? 'default' : 'e-resize'
+        },
+        /**
+         * 获取书籍内容列表
+         * @param params
+         */
+        getBook(params = {}) {
+            factory.getBook({
+                user: params.user || this.bookUser,
+                name: params.name || this.bookName,
+            }).then(res => {
+                this.list = JSON.parse(res.data)
+                this.bookChapter = this.list.default
+                this.getChapter()
+            })
+        },
+        /**
+         * 获取章节详细内容
+         * @param params
+         */
+        getChapter(params = {}) {
+            factory.getChapter({
+                user: params.user || this.bookUser,
+                name: params.name || this.bookName,
+                key: params.key || this.bookChapter,
+            }).then(temp => {
+                this.mainText = temp.success ? temp.data : null
+            })
+        },
+        /**
+         * 菜单监听
+         * @param option
+         */
+        onMenusClick(option) {
+            this.bookChapter = option.key
+            this.getChapter()
         }
     }
 }
@@ -305,6 +355,16 @@ export default {
 
         .book-main {
             overflow: auto;
+
+            h1 {
+                font-size: 2em;
+                font-family: 黑体, serif;
+                text-align: center;
+            }
+
+            p {
+                text-indent: 2em;
+            }
         }
 
         /*滚动条整体样式*/

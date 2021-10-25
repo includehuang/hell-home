@@ -25,17 +25,8 @@
             </a-row>
             <a-row :gutter="24">
                 <a-button @click="test">输出</a-button>
+                <a-button @click="clear">清空</a-button>
                 <h-editor ref="editor" id="testEditor" :config="{height: 1400}" button='<div class="w-e-menu" data-title="额外"><i class="w-e-icon-indent-decrease"></i></div>'>
-                    <pre><code class="Java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">void</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">String</span>[] args)</span></span>{
-    <span class="hljs-type">int</span> a=<span class="hljs-number">0</span>;
-    <span class="hljs-keyword">return</span> a;
-}</code></pre><pre><code class="JavaScript"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"h-editor"</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">"Object.assign(style, defaultStyle)"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:id</span>=<span class="hljs-string">"id"</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">slot</span>/&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre><p data-we-empty-p=""><br></p>
                 </h-editor>
 
             </a-row>
@@ -96,12 +87,6 @@ export default {
             // editor.create()
         }, 1000)
 
-        console.log('token==========', this.$store.state.token)
-
-        factory.getTest().then(res => {
-            console.log('测试接口返回>>>', res)
-        })
-
         factory.getTestTxt().then(res => {
             this.testTxt = res
         })
@@ -109,7 +94,11 @@ export default {
     },
     methods: {
         test() {
+            // eslint-disable-next-line no-console
             console.log(this.$refs.editor.getContent())
+        },
+        clear() {
+            this.$refs.editor.setContent('')
         },
         drag(e) {
             let oEle = e.target // 获取目标元素
@@ -169,9 +158,6 @@ export default {
                     oldTop = newTop
                     change += evChange
 
-                    // oEle.style.left = parseInt(oEle.style.left) + change + 'px'
-                    console.log(`change = ${newTop} - ${oldTop}`)
-                    console.log('变化的距离==========', change)
                     oEle.style.top = parseInt(oEle.style.top) + evChange + 'px'
                 }, 0)
             }
@@ -209,17 +195,13 @@ export default {
         },
         login() {
             factory.getPublicKey().then(res => {
-                console.log(res)
                 let key = res.data.public_key
-                console.log('pubKey=========       ', key)
-                let kkk = res.data.private_key
-                console.log('pubKey=========       ', kkk)
+                // let kkk = res.data.private_key
                 const password = utils.encrypted(key, 'test@2')
-                const pppppppp = utils.decrypted(kkk, password)
-                console.log(password)
-                console.log(pppppppp)
+                // const pppppppp = utils.decrypted(kkk, password)
                 // setTimeout(() => {
                 factory.getToken(password).then(res => {
+                    // eslint-disable-next-line no-console
                     console.log(res)
                 })
                 // }, 3000)
