@@ -354,6 +354,7 @@ export default {
         padding: 0;
 
         .book-main {
+            width: calc(~"100% - 48px");
             overflow: auto;
 
             h1 {
@@ -364,6 +365,11 @@ export default {
 
             p {
                 text-indent: 2em;
+
+                img {
+                    position: relative;
+                    left: -2em;
+                }
             }
         }
 
