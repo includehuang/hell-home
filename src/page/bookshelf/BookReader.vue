@@ -1,5 +1,5 @@
 <template>
-    <div id="bookshelf">
+    <div id="book-reader">
         <reader/>
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 import Reader from "@/components/exhibition/Reader"
 export default {
-    name: "Bookshelf",
+    name: "BookReader",
     components: {Reader},
     props: {},
     data() {

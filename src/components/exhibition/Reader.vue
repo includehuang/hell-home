@@ -158,18 +158,34 @@ export default {
     components: {
         HMenus
     },
-    props: {},
+    props: {
+        bookUser: {
+            type: String,
+            default: 'vision'
+        },
+        bookName: {
+            type: String,
+            default: '魔法师生存守则'
+        },
+        bookChapter: {
+            type: String,
+            default: '000$001'
+        },
+        cursor: {
+            type: String,
+            default: 'e-resize', // 'default' | 'e-resize'
+        },
+        theme: {
+            type: String,
+            default: 'light', // 'light' | 'dark'
+        },
+    },
     data() {
         return {
             list: null,
             collapsed: false,
-            theme: 'light', // 'light' | 'dark'
             sideWidth: 200,
-            cursor: 'e-resize', // 'default' | 'e-resize'
             mainText: '',
-            bookUser: 'vision',
-            bookName: '魔法师生存守则',
-            bookChapter: '000$001'
         }
     },
     computed: {

@@ -183,7 +183,7 @@ const BasicRouter = {
                 {
                     path: '/bookshelf/reader',
                     name: 'ReaderIndex',
-                    component: () => import('@/page/bookshelf/Reader'),
+                    component: () => import('@/page/bookshelf/BookReader'),
                     meta: {title: 'menu.reader.index', icon: 'read'}
                 },
             ]
