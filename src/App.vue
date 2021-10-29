@@ -35,6 +35,10 @@ export default {
 
 <style lang="less">
 
+* {
+    box-sizing: border-box;
+}
+
 html {
     margin: 0;
     padding: 0;
