@@ -172,7 +172,7 @@ const BasicRouter = {
             redirect: '/bookshelf/index',
             name: 'Bookshelf',
             component: RouteView,
-            meta: {title: 'menu.bookshelf', icon: 'read', NoChildren: true},
+            meta: {title: 'menu.bookshelf', icon: 'read'},
             children: [
                 {
                     path: '/bookshelf/index',
@@ -184,7 +184,7 @@ const BasicRouter = {
                     path: '/bookshelf/reader',
                     name: 'ReaderIndex',
                     component: () => import('@/page/bookshelf/BookReader'),
-                    meta: {title: 'menu.reader.index', icon: 'read'}
+                    meta: {title: 'menu.bookshelf.reader', icon: 'read'}
                 },
             ]
         },
