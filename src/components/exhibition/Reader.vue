@@ -163,7 +163,7 @@ export default {
             type: String,
             default: 'vision'
         },
-        bookName: {
+        bookTitle: {
             type: String,
             default: '魔法师生存守则'
         },
@@ -182,7 +182,7 @@ export default {
     },
     data() {
         return {
-            list: null,
+            list: {data: null},
             collapsed: false,
             sideWidth: 200,
             mainText: '',
@@ -284,7 +284,7 @@ export default {
         getBook(params = {}) {
             factory.getBook({
                 user: params.user || this.bookUser,
-                name: params.name || this.bookName,
+                name: params.name || this.bookTitle,
             }).then(res => {
                 this.list = JSON.parse(res.data)
                 this.bookChapter = this.list.default
@@ -298,7 +298,7 @@ export default {
         getChapter(params = {}) {
             factory.getChapter({
                 user: params.user || this.bookUser,
-                name: params.name || this.bookName,
+                name: params.name || this.bookTitle,
                 key: params.key || this.bookChapter,
             }).then(temp => {
                 this.mainText = temp.success ? temp.data : null

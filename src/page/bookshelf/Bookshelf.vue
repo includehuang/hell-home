@@ -19,11 +19,23 @@
                                 <a-card :bordered="false" :body-style="{ padding: 0 }">
                                     <div class="book-wrapper">
                                         <div class="book-cover">
-                                            <img :src="item.cover || dCover">
+                                            <router-link :to="{
+                                                    name:'ReaderIndex',
+                                                    params: {user: item.author, title: item.title}
+                                                }"
+                                            >
+                                                <img :src="item.cover || dCover">
+                                            </router-link>
                                         </div>
                                         <div class="book-content">
                                             <p class="book-title">
-                                                <a>{{ item.name }}</a>
+                                                <router-link :to="{
+                                                    name:'ReaderIndex',
+                                                    params: {user: item.author, title: item.title}
+                                                }"
+                                                >
+                                                    {{ item.title }}
+                                                </router-link>
                                             </p>
                                             <p class="book-description" :title="item.description">
                                                 <span>{{ item.description }}</span>
@@ -61,7 +73,7 @@ const bookList = [
     {
         id: 'vision$1',
         author: 'vision',
-        name: '魔法师生存守则魔法师生存守则魔法师生存守则魔法师生存守则',
+        title: '魔法师生存守则魔法师生存守则魔法师生存守则魔法师生存守则',
         cover: '',
         tag: ['魔法', '穿越'],
         description: '这是一本魔法书这是一本魔法书这是一本魔法书这是一本魔法书这是一本魔法书这是一本魔法书这是一本魔法书这是一本魔法书这是一本魔法书这是一本魔法书这是一本魔法书这是一本魔法书这是一本魔法书',
@@ -69,7 +81,7 @@ const bookList = [
     {
         id: 'vision$0',
         author: 'vision',
-        name: '公告',
+        title: '公告',
         cover: '',
         tag: ['魔法', '穿越', '公告', '啊这'],
         description: '这是一本魔法书',
@@ -77,7 +89,7 @@ const bookList = [
     {
         id: 'vision$2',
         author: 'vision',
-        name: '测试',
+        title: '测试',
         cover: '',
         tag: ['都市', '修仙'],
         description: '这是一本魔法书',
@@ -85,7 +97,7 @@ const bookList = [
     {
         id: 'vision$1',
         author: 'vision',
-        name: '魔法师生存守则',
+        title: '魔法师生存守则',
         cover: '',
         tag: ['都市修仙'],
         description: '这是一本魔法书',
@@ -93,7 +105,7 @@ const bookList = [
     {
         id: 'vision$0',
         author: 'vision',
-        name: '公告',
+        title: '公告',
         cover: '',
         tag: ['魔法'],
         description: '这是一本魔法书',
@@ -101,7 +113,7 @@ const bookList = [
     {
         id: 'vision$2',
         author: 'vision',
-        name: '测试测试测试测试测试测试测试测试测试测试测试测试',
+        title: '测试测试测试测试测试测试测试测试测试测试测试测试',
         cover: '',
         tag: ['魔法'],
         description: '这是一本魔法书',
