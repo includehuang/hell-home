@@ -7,7 +7,9 @@
                 <slot name="logo">
                 </slot>
             </div>
-            <h-menu :menus="menus" :default-selected-keys="['Home']" :selectedKeys="[$route.name]"/>
+            <slot name="menus">
+                <h-menu :menus="menus" :default-selected-keys="['Home']" :selectedKeys="[$route.name]"/>
+            </slot>
             <div class="header-extra">
                 <slot name="extra">
                     <!--suppress SpellCheckingInspection -->
@@ -51,9 +53,17 @@ export default {
         HMenu,
         LogoSvg,
     },
+    props: {
+        menus: {
+            type: Object,
+            default: () => {
+                return menus
+            }
+        }
+    },
     data() {
         return {
-            menus,
+            // menus,
             LIVE2D_SETTINGS: {
                 'waifuDraggable': 'axis-x',
                 'modelStorage': true,
@@ -151,8 +161,6 @@ export default {
 </script>
 
 <style lang="less">
-@import "../assets/style/color";
-@import "../assets/style/codeLight";
 
 #basic-layout {
 

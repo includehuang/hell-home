@@ -168,8 +168,6 @@ export default {
 
 <style lang="less">
 
-@import "../../assets/style/color";
-
 #home {
 
     .header {

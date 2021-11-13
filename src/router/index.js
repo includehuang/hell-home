@@ -4,6 +4,7 @@ import utils from "@/common/util/utils"
 import store from "@/store/store"
 import BasicLayout from "@/layout/BasicLayout"
 import UserLayout from "@/layout/UserLayout"
+import SubfieldLayout from "@/layout/SubfieldLayout"
 import {message} from "ant-design-vue"
 import i18n from "@/lang/i18n"
 
@@ -266,13 +267,14 @@ const FunctionRouter = {
 const SubfieldRouter = {
     path: '/subfield',
     redirect: '/subfield/index',
-    component: BasicLayout,
+    component: SubfieldLayout,
     meta: {title: '/subfield'},
     children: [
         {
             path: '/subfieldTemp',
             redirect: '/subfield/index',
             component: RouteView,
+            meta: {title: 'subfield.index'},
             children: [
                 {
                     path: '/subfield/index',
@@ -347,3 +349,6 @@ export default router
 
 // 默认导航
 export const menus = trans(BasicRouter.children)
+
+// 额外模块导航
+export const subfieldMenus = trans(SubfieldRouter.children)

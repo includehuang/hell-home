@@ -202,8 +202,6 @@ export default {
 
 <style lang="less">
 
-@import "../../assets/style/color";
-
 #bookshelf {
 
     .content {

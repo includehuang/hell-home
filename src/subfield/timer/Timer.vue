@@ -151,8 +151,6 @@ export default {
 
 <style scoped lang="less">
 
-@import "../../assets/style/color";
-
 #sub-timer {
 
     width: 100%;
