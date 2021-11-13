@@ -3,6 +3,12 @@ const path = require('path')
 const config = require('../config')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const packageConfig = require('../package.json')
+// 公共less样式
+const commonLess = [
+    '../src/assets/style/color.less',
+    '../src/assets/style/codeLight.less',
+    '../src/assets/style/codeLight.less',
+]
 
 exports.assetsPath = function (_path) {
     const assetsSubDirectory = process.env.NODE_ENV === 'production'
@@ -43,36 +49,13 @@ exports.cssLoaders = function (options) {
         }
 
         if (loader === 'less') {
-            console.log('...........', __dirname)
-            loaders.push({
-                loader: 'style-resources-loader',
-                options: {
-                    patterns: path.resolve(__dirname, '../src/assets/style/color.less')
-                }
-            })
-            loaders.push({
-                loader: 'style-resources-loader',
-                options: {
-                    patterns: path.resolve(__dirname, '../src/assets/style/codeLight.less')
-                }
-            })
-            loaders.push({
-                loader: 'style-resources-loader',
-                options: {
-                    patterns: path.resolve(__dirname, '../src/assets/style/codeLight.less')
-                }
-            })
-            loaders.push({
-                loader: 'style-resources-loader',
-                options: {
-                    patterns: path.resolve(__dirname, '../src/assets/style/codeLight.less')
-                }
-            })
-            loaders.push({
-                loader: 'style-resources-loader',
-                options: {
-                    patterns: path.resolve(__dirname, '../src/assets/style/scrollbar.less')
-                }
+            commonLess.forEach(item => {
+                loaders.push({
+                    loader: 'style-resources-loader',
+                    options: {
+                        patterns: path.resolve(__dirname, item)
+                    }
+                })
             })
         }
 
