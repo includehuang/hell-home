@@ -283,6 +283,34 @@ const SubfieldRouter = {
                     meta: {title: 'subfield.index'}
                 }
             ]
+        },
+        {
+            path: '/demo',
+            redirect: '/demo/index',
+            component: RouteView,
+            meta: {title: 'subfield.demo'},
+            children: [
+                {
+                    path: '/demo/index',
+                    name: 'DemoIndex',
+                    component: () => import('@/subfield/demo/Demo'),
+                    meta: {title: 'subfield.demo'},
+                    children: [
+                        {
+                            path: '/demo/index/directive',
+                            name: 'DirectiveDemo',
+                            component: () => import('@/subfield/directive/Directive'),
+                            meta: {title: 'subfield.directive'}
+                        },
+                        {
+                            path: '/demo/index/directiveDoc',
+                            name: 'DirectiveDoc',
+                            component: () => import('@/subfield/directive/DirectiveDoc'),
+                            meta: {title: 'subfield.directive.doc'}
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

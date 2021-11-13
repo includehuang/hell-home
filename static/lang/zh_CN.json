@@ -109,6 +109,12 @@
     "user.verification-code.required": "请输入验证码！",
 
     "book.recommend.title": "好书推荐",
-    "book.recommend.more": "查看更多"
+    "book.recommend.more": "查看更多",
+
+    "subfield.index": "首页",
+    "subfield.directive": "自定义指令",
+    "subfield.directive.doc": "自定义指令文档",
+    "subfield.demo": "Demo",
+    "subfield.demo.list": "Demo列表"
 
 }
