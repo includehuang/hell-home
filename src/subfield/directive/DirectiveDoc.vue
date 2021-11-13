@@ -70,6 +70,7 @@ Vue.directive(<span class="hljs-string">'focus'</span>, {
 
             </ul>
             <p>除了 <code class="Bash"><span class="hljs-built_in">el</span></code> 之外，其它参数都应该是只读的，切勿进行修改。如果需要在钩子之间共享数据，建议通过元素的 <a href='https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/dataset'><code>dataset</code></a> 来进行。</p>
+            <a-button size="small" @click="open('argsModal')">查看钩子参数例子</a-button>
             <p>这是一个使用了这些 property 的自定义钩子样例：</p>
             <pre><code class="JavaScript">&lt;<span class="hljs-selector-tag">div</span> id=<span class="hljs-string">"hook-arguments-example"</span> v-demo:foo<span class="hljs-selector-class">.a</span>.b=<span class="hljs-string">"message"</span>&gt;&lt;/div&gt;
 Vue<span class="hljs-selector-class">.directive</span>(<span class="hljs-string">'demo'</span>, {

@@ -7,7 +7,7 @@
              :width="500"
     >
         <label>
-            <input v-test id="out"/>
+            <input v-hook id="out"/>
             <a-row>
                 <a-button size="small" @click="list.push([list.length])">测试更新效果</a-button>
                 <a-button size="small" @click="list1.push([list1.length])">测试子元素更新效果</a-button>
@@ -17,7 +17,7 @@
                 <input v-focus>
             </div>
             <a-card>
-                <input v-test id="in">
+                <input v-hook id="in">
                 <div v-for="item in list1" :key="item">
                     <input v-focus>
                 </div>

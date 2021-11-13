@@ -97,7 +97,7 @@ const draggable = {
     }
 }
 
-const test = {
+const hook = {
     bind(el) {
         console.log('元素初始化成功' + el.id)
     },
@@ -115,11 +115,25 @@ const test = {
     }
 }
 
+const args = {
+    bind: function(el, binding, vNode) {
+        let s = JSON.stringify
+        el.innerHTML =
+            'name: '       + s(binding.name) + '<br>' +
+            'value: '      + s(binding.value) + '<br>' +
+            'expression: ' + s(binding.expression) + '<br>' +
+            'argument: '   + s(binding.arg) + '<br>' +
+            'modifiers: '  + s(binding.modifiers) + '<br>' +
+            'vNode keys: ' + Object.keys(vNode).join(', ')
+    }
+}
+
 const DIRECTIVES = {
     focus,
     focusX,
     draggable,
-    test,
+    hook,
+    args,
 }
 
 export default DIRECTIVES
