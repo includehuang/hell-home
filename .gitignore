@@ -13,3 +13,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 /src/lang/i18n.js
+/src/lang/lang/
