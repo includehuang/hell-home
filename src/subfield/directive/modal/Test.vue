@@ -7,19 +7,19 @@
              :width="500"
     >
         <label>
-            <input v-hook id="out"/>
+            <p v-hook id="out">这一行字绑定了监听，id：out</p>
             <a-row>
                 <a-button size="small" @click="list.push([list.length])">测试更新效果</a-button>
                 <a-button size="small" @click="list1.push([list1.length])">测试子元素更新效果</a-button>
                 <a-button size="small" @click="list1.push([list1.length]) && list.push([list.length])">测试一起更新效果</a-button>
             </a-row>
             <div v-for="item in list" :key="item">
-                <input v-focus>
+                <p>外部元素内容</p>
             </div>
             <a-card>
-                <input v-hook id="in">
+                <p v-hook id="in">这一行字绑定了监听，id：in</p>
                 <div v-for="item in list1" :key="item">
-                    <input v-focus>
+                    <p>内部元素内容</p>
                 </div>
             </a-card>
             <a-button v-if="!showMark" size="small" @click="showMark = true">显示顺序</a-button>

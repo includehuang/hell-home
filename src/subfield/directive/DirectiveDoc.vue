@@ -137,11 +137,12 @@ Vue.directive(<span class="hljs-string">'pin'</span>, {
   }
 })</code></pre>
             <p>结果：</p>
-            <iframe height="200" class="demo" scrolling="no" title="Dynamic Directive Arguments" src="https://codepen.io/team/Vue/embed/rgLLzb/?height=300&amp;theme-id=32763&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true"
-                    style="border: 1px solid rgb(238, 238, 238); border-radius: 2px; padding: 25px 35px; margin: 1em 0px 40px; user-select: none; overflow-x: auto; color: rgb(48, 68, 85); font-family: Source Sans Pro, Helvetica Neue, Arial, sans-serif;
-                     font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;
-                      background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; width: 700px;"></iframe>
+            <iframe height="200" class="demo" scrolling="no" title="Dynamic Directive Arguments" src="https://codepen.io/team/Vue/embed/rgLLzb/?height=300&amp;theme-id=32763&amp;default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen
+                    style="border: 1px solid rgb(238, 238, 238); border-radius: 2px; padding: 25px 35px; margin: 1em 0 10px; user-select: none; overflow-x: auto; color: rgb(48, 68, 85); font-family: Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+                     font-size: 16px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0; text-transform: none; white-space: normal; widows: 2; word-spacing: 0; -webkit-text-stroke-width: 0;
+                      background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; width: 700px;"></iframe>
             <p>&nbsp;</p>
+            <a-button size="small" @click="open('changeModal')">查看更多例子</a-button>
             <p>这样这个自定义指令现在的灵活性就足以支持一些不同的用例了。</p>
             <h2 >函数简写</h2>
             <p>在很多时候，你可能想在 <code class="Bash"><span class="hljs-built_in">bind</span></code> 和 <code class="Bash"><span class="hljs-built_in">update</span></code> 时触发相同行为，而不关心其它的钩子。比如这样写：</p>
@@ -155,9 +156,22 @@ Vue<span class="hljs-selector-class">.directive</span>(<span class="hljs-string"
   console<span class="hljs-selector-class">.log</span>(binding<span class="hljs-selector-class">.value</span>.<span class="hljs-attribute">color</span>) // =&gt; <span class="hljs-string">"white"</span>
   console<span class="hljs-selector-class">.log</span>(binding<span class="hljs-selector-class">.value</span>.text)  <span class="hljs-comment">// =&gt; "hello!"</span>
 })</code></pre>
-
+            <h2 >更多例子</h2>
+            <a-button size="small" @click="open('moreModal')">查看更多例子</a-button>
+            <h2>总结</h2>
+            <h3>1. 自定义指令用法</h3>
+            <ul>
+                <li>多个元素需要执行相同的操作时</li>
+                <li>封装方法与操作，方便在各处复用</li>
+                <li>简化复杂操作</li>
+            </ul>
+            <h3>2. 指令优点</h3>
+            <ul>
+                <li>可复用性强，使用灵活。全局指令只需要在任意位置定义一次就能全局生效，也可以定义局部指令，在指定范围使用</li>
+                <li>简化代码。例如v-for指令，如果不使用指令，那每次需要循环元素时都需要写一大堆内容</li>
+                <li>提高可读性与可维护性。使用指令后的代码量比较小而且清晰，比直接阅读代码会轻松很多，并且维护时在自定义内部维护即可</li>
+            </ul>
         </div>
-
     </div>
 </template>
 

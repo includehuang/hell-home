@@ -97,6 +97,7 @@ const draggable = {
     }
 }
 
+// noinspection JSUnusedGlobalSymbols
 const hook = {
     bind(el) {
         console.log('元素初始化成功' + el.id)
@@ -128,12 +129,60 @@ const args = {
     }
 }
 
+const repeat = {
+    bind: function(el, binding, vNode) {
+        let div = document.createElement('div')
+        for(let i = 0; i < binding.value; i++) {
+            let ch = document.createElement(vNode.tag)
+            ch.innerHTML = vNode.children[0].text
+            div.append(ch)
+        }
+        div.innerHTML = `<div>${div.innerHTML}</div>`
+        el.innerHTML = div.innerHTML
+    },
+}
+
+const change = function(el, binding, vNode) {
+    let s = JSON.stringify
+    el.innerHTML =
+        'argument: '   + s(binding.arg)
+    // console.log('argument: '   + s(binding.arg))
+}
+
+const del = {
+    bind: function(el) {
+        if (!el.id) {
+            el.id = 'directiveDelTest' + Math.random() + Math.random()
+        }
+        const delFun = function() {
+            document.getElementById(el.id).remove()
+        }
+        const button = document.createElement('button')
+        button.className = 'ant-btn'
+        button.innerText = '点击删除'
+        button.onclick = delFun
+        el.append(button)
+    }
+}
+
+const open = {
+    bind: function(el, binding) {
+        el.onclick = () => {
+            window.open(binding.value)
+        }
+    }
+}
+
 const DIRECTIVES = {
     focus,
     focusX,
     draggable,
     hook,
     args,
+    repeat,
+    change,
+    del,
+    open,
 }
 
 export default DIRECTIVES
