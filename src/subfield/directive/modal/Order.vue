@@ -1,5 +1,5 @@
 <template>
-    <a-modal @cancel="close('testModal')" @ok="close('testModal')"
+    <a-modal @cancel="close('orderModal')" @ok="close('orderModal')"
              :destroyOnClose="true" :maskClosable="false"
              :okText="'确认'" :cancelText="'取消'"
              :visible="true"

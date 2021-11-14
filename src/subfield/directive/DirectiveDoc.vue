@@ -31,7 +31,7 @@ Vue.directive(<span class="hljs-string">'focus'</span>, {
             <p>然后你可以在模板中任何元素上使用新的 <code>v-focus</code> property，如下：</p>
             <pre><code class="Html"><span class="hljs-section">&lt;input v-focus&gt;</span></code></pre>
             <h2 >钩子函数</h2>
-            <a-button size="small" @click="open('testModal')">查看钩子函数例子</a-button>
+            <a-button size="small" @click="open('orderModal')">钩子函数顺序</a-button>
             <p>一个指令定义对象可以提供如下几个钩子函数 (均为可选)：</p>
             <ul>
                 <li><code class="Bash"><span class="hljs-built_in">bind</span></code>：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。</li>
