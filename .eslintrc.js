@@ -19,12 +19,12 @@ module.exports = {
     rules: {
         /* 禁用 debugger
          */
-        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'no-debugger': process.env.NODE_ENV === 'production' ? 1 : 1,
         /*
           禁用 console
           ❌ console.log(xxx)
         */
-        'no-console': process.env.NODE_ENV === 'production' ? 1 : 'off',
+        'no-console': process.env.NODE_ENV === 'production' ? 1 : 1,
         /*
           使用let 或 const而不是var
           ❌ var a = 1

@@ -5,6 +5,7 @@
         :theme="theme"
         :class="innerClass"
         :selectedKeys="selectedKeys"
+        v-model="model"
         @click="onClickFun"
     >
         <template v-for="item in menus">
@@ -193,6 +194,11 @@ export default {
             default: null
         },
     },
+    data() {
+        return {
+            model: ''
+        }
+    },
     created() {
         if (this.$props.langRender) {
             translation = this.$props.langRender
@@ -210,7 +216,7 @@ export default {
             if (this.$listeners.click) {
                 this.$emit('click', option)
             }else {
-                this.$router.push(option.key)
+                this.$router.push({name: option.key})
             }
         },
     }

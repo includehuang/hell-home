@@ -3,7 +3,7 @@
     <div id="home">
         <div class="header">
             <div class="avatar">
-                <a-avatar size="large" :src="avatar"/>
+                <a-avatar size="large" :src="$store.state.common.avatar"/>
             </div>
             <div class="header-content">
                 <div class="header-title">
@@ -132,7 +132,6 @@ export default {
         return {
             nowTime: this.$moment().format('HH: mm: ss'),
             openTime: this.$moment().format('HH'),
-            avatar: '/static/img/common/avatar.jpg',
             loading: true,
             btnGroup: [],
             projects: [],
@@ -144,6 +143,7 @@ export default {
         }
     },
     mounted() {
+
         factory.getProjects().then(res => {
             this.loading = false
             this.projects = res.projects
@@ -167,8 +167,6 @@ export default {
 </script>
 
 <style lang="less">
-
-@import "../../assets/style/color";
 
 #home {
 

@@ -1,10 +1,8 @@
 import axios from "axios"
-import Vue from "vue"
 import store from "@/store/store"
 import * as QS from "autoprefixer"
-
-const thisVue = new Vue()
-const vueObj = thisVue.$vueObj
+import {message} from "ant-design-vue"
+import i18n from "@/lang/i18n"
 
 // const setBaseUrl = function() {
 //     if (process.env.NODE_ENV === 'development') {
@@ -66,7 +64,7 @@ request.interceptors.response.use(
                 // 清除本地token和清空vuex中token对象
                 // 跳转登录页面
                 case 403:
-                    vueObj.$message.warning(vueObj.$t('request.error.403'))
+                    message.warning(i18n.t('request.error.403'))
                     // 清除token
                     localStorage.removeItem('token')
                     // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
@@ -74,11 +72,11 @@ request.interceptors.response.use(
 
                 // 404请求不存在
                 case 404:
-                    vueObj.$message.error(vueObj.$t('request.error.404'))
+                    message.warning(i18n.t('request.error.404'))
                     break
                 // 其他错误，直接抛出错误提示
                 default:
-                    vueObj.$message.error(vueObj.$t(`error.code.${error.response.status}`))
+                    message.warning(i18n.t(`error.code.${error.response.status}`))
                     break
             }
             return Promise.reject(error.response)
@@ -91,7 +89,7 @@ export function get({
     url = '/',
     params = undefined,
     isSuccessTip = false,
-    isErrorTip = false,
+    isErrorTip = true,
     successStr = 'request.success.tip',
     errorStr = 'request.error.tip'
 }) {
@@ -100,12 +98,25 @@ export function get({
             params: params
         }).then(res => {
             if (isSuccessTip) {
-                vueObj.$message.success(vueObj.$t(successStr))
+                switch (res.data.code) {
+                    case undefined : message.success(i18n.t(successStr)); break
+                    case 200 :
+                    case '200' :
+                    default : {
+                        if (res.data.data.tipMsg) {
+                            message.success(res.data.data.tipMsg); break
+                        }else if (res.data.data.errMsg) {
+                            message.error(res.data.data.errMsg); break
+                        }else {
+                            message.success(i18n.t(successStr)); break
+                        }
+                    }
+                }
             }
             resolve(res)
         }).catch(err => {
             if (isErrorTip) {
-                vueObj.$message.success(vueObj.$t(errorStr))
+                message.error(i18n.t(errorStr))
             }
             reject(err)
         })
@@ -125,13 +136,13 @@ export function post({
         request.post(url, QS.stringify(params))
             .then(res => {
                 if (isSuccessTip) {
-                    vueObj.$message.success(vueObj.$t(successStr))
+                    message.success(i18n.t(successStr))
                 }
                 resolve(res)
             })
             .catch(err => {
                 if (isErrorTip) {
-                    vueObj.$message.success(vueObj.$t(errorStr))
+                    message.error(i18n.t(errorStr))
                 }
                 reject(err)
             })

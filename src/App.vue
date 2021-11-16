@@ -11,9 +11,9 @@
 import Vue from "vue"
 import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
 import BilibiliPlayer from "@/components/player/BilibiliPlayer"
+import request from "@/common/request"
 import 'moment/locale/zh-cn'
 
-const request = () => import("@/common/request")
 export default {
     name: 'App',
     components: {BilibiliPlayer},
@@ -35,6 +35,10 @@ export default {
 
 <style lang="less">
 
+* {
+    box-sizing: border-box;
+}
+
 html {
     margin: 0;
     padding: 0;
@@ -55,6 +59,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     min-height: 100%;
+    height: 100%;
 
 }
 </style>

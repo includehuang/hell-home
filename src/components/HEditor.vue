@@ -1,5 +1,5 @@
 <template>
-    <div id="h-editor" :style="Object.assign(style, defaultStyle)">
+    <div id="h-editor" :style="Object.assign(hStyle, defaultStyle)">
         <div :id="id">
             <slot/>
         </div>
@@ -9,6 +9,7 @@
 <script>
 
 import Editor from "wangeditor"
+import hljs from 'highlight.js'
 
 // 定义配置项的类型规范
 // export type ConfigType = {
@@ -104,7 +105,7 @@ export default {
                 return { }
             }
         },
-        style: {
+        hStyle: {
             type: Object,
             default: () => {
                 return { }
@@ -134,6 +135,7 @@ export default {
         const config = Object.assign(this.defaultConfig, this.config)
         Object.assign(this.editor.config, config)
         this.editor.i18next = null
+        this.editor.highlight = hljs
         this.editor.create()
         this.menusAppend(this.button)
     },
@@ -173,6 +175,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="less">
 
 </style>
