@@ -14,3 +14,5 @@ yarn-error.log*
 *.sln
 /src/lang/i18n.js
 /src/lang/lang/
+/src/test/
+/src/page_b/

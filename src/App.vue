@@ -10,13 +10,13 @@
 <script>
 import Vue from "vue"
 import zh_CN from 'ant-design-vue/lib/locale-provider/zh_CN'
-import BilibiliPlayer from "@/components/player/BilibiliPlayer"
+// import BilibiliPlayer from "@/components/player/BilibiliPlayer"
 import request from "@/common/request"
 import 'moment/locale/zh-cn'
 
 export default {
     name: 'App',
-    components: {BilibiliPlayer},
+    // components: {BilibiliPlayer},
     data() {
         return {
             zh_CN,

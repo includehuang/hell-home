@@ -1,5 +1,6 @@
 const directive = {
     install: function(Vue, option) {
+        // 元素可拖动指令
         Vue.directive('drag', {
             inserted(el) {
                 let drag = e => {
